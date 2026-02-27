@@ -83,13 +83,13 @@ body{
 }
 
 .desk-left {
-  width: 60%;
+  width: 75%;
   background: #000;
   padding: 70px;
 }
 
 .desk-right {
-  width: 40%;
+  width: 25%;
   position: relative;
 }
 

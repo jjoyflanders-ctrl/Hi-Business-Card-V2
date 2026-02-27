@@ -51,18 +51,29 @@ body{
 
 /* CARD */
 .card{
-  display:flex;
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
   border-radius:28px;
   overflow:hidden;
-  background:#f4f4f4;
 }
 
-/* LEFT BLACK SIDE */
-.desk-left{
-  width:75%;
+/* BLACK BACKGROUND CONTROL */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:75%; /* 👈 THIS controls seam */
   background:#000;
-  color:white;
+  z-index:1;
+}
+
+/* LEFT SIDE CONTENT */
+.desk-left{
+  position:relative;
+  z-index:2;
   padding:60px;
+  color:white;
 }
 
 .desk-left h1{
@@ -105,11 +116,13 @@ body{
   cursor:pointer;
 }
 
-/* RIGHT WHITE SIDE */
+/* RIGHT SIDE */
 .desk-right{
-  width:25%;
-  background:#f4f4f4;
   position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 /* PHOTO */
@@ -119,10 +132,8 @@ body{
   border-radius:50%;
   border:8px solid white;
   overflow:hidden;
-  position:absolute;
-  top:50%;
-  left:0;
-  transform:translate(-28%, -50%);
+  position:relative;
+  left:-110px; /* 👈 overlap control */
   box-shadow:0 25px 50px rgba(0,0,0,0.25);
 }
 

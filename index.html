@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Highlight Digital Contact</title>
 
-  <link rel="manifest" href="./manifest.webmanifest?v=1772213699" />
+  <link rel="manifest" href="./manifest.webmanifest?v=999" />
   <link rel="icon" href="./assets/icon-192.png" />
   <link rel="apple-touch-icon" href="./assets/icon-192.png" />
   <meta name="theme-color" content="#3F845B" />
@@ -16,25 +16,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="./styles.css?v=1772213699" />
+  <link rel="stylesheet" href="./styles.css?v=999" />
 </head>
 <body>
   <div class="app">
-    <!-- Top banner (desktop) -->
+
+    <!-- Header banner (shows on desktop AND mobile) -->
     <header class="topbar" aria-label="Highlight header">
       <img class="topbar__img" src="./assets/header.png" alt="Highlight Industries, Inc." />
+
+      <!-- Desktop-only controls (hidden on mobile) -->
       <div class="topbar__controls">
         <div class="search">
           <input id="searchInput" class="search__input" type="search" placeholder="Search employees…" autocomplete="off" />
           <button id="searchBtn" class="search__btn" type="button" title="Search">Find</button>
           <div id="searchResults" class="search__results" role="listbox" aria-label="Employee results"></div>
         </div>
-</div>
+      </div>
     </header>
-<div id="loadError" class="loadError" role="status" aria-live="polite"></div>
 
-    <!-- Desktop layout -->
+    <div id="loadError" class="loadError" role="status" aria-live="polite"></div>
+
     <main class="stage">
+
+      <!-- Desktop layout -->
       <section class="card" aria-label="Contact card">
         <div class="card__left">
           <div class="identity">
@@ -48,10 +53,12 @@
               <span class="detail__icon" aria-hidden="true">📞</span>
               <span id="empPhone" class="detail__text">—</span>
             </a>
+
             <a id="emailLink" class="detail" href="#">
               <span class="detail__icon" aria-hidden="true">✉️</span>
               <span id="empEmail" class="detail__text">—</span>
             </a>
+
             <a id="webLink" class="detail" href="#" target="_blank" rel="noreferrer">
               <span class="detail__icon" aria-hidden="true">🌐</span>
               <span id="empWeb" class="detail__text">—</span>
@@ -59,9 +66,9 @@
           </div>
 
           <div class="actions">
-            <button id="saveBtn" class="btn btn--primary btn--wide" type="button">Save to Contacts</button>
-            <button id="shareBtn" class="btn btn--ghost btn--wide" type="button">Share</button>
-            <button id="sendBtn" class="btn btn--primary btn--wide" type="button">Send to Phone</button>
+            <button id="saveBtn" class="btn btn--wide" type="button">Save to Contacts</button>
+            <button id="shareBtn" class="btn btn--wide" type="button">Share</button>
+            <button id="sendBtn" class="btn btn--wide" type="button">Send to Phone</button>
           </div>
         </div>
 
@@ -75,7 +82,9 @@
 
       <!-- Mobile layout -->
       <section class="mcard" aria-label="Mobile contact card">
-<div class="mcard__photoWrap" aria-label="Employee photo">
+        <!-- NO mobile logo/banner here (removed) -->
+
+        <div class="mcard__photoWrap" aria-label="Employee photo">
           <img id="mHeroImg" class="mcard__photo" alt="" />
           <div class="mcard__fade"></div>
         </div>
@@ -96,10 +105,12 @@
               <span class="mDetail__icon" aria-hidden="true">📞</span>
               <span id="mPhone" class="mDetail__text">—</span>
             </a>
+
             <a id="mWebLink" class="mDetail" href="#" target="_blank" rel="noreferrer">
               <span class="mDetail__icon" aria-hidden="true">🌐</span>
               <span id="mWeb" class="mDetail__text">—</span>
             </a>
+
             <a id="mEmailLink" class="mDetail" href="#">
               <span class="mDetail__icon" aria-hidden="true">✉️</span>
               <span id="mEmail" class="mDetail__text">—</span>
@@ -107,9 +118,9 @@
           </div>
 
           <div class="mcard__actions">
-            <button id="mSaveBtn" class="btn btn--dark btn--wide" type="button">Save to Contacts</button>
-            <button id="mShareBtn" class="btn btn--dark btn--wide" type="button">Share</button>
-            <button id="mFindBtn" class="btn btn--dark btn--wide" type="button">Find</button>
+            <button id="mSaveBtn" class="btn btn--wide" type="button">Save to Contacts</button>
+            <button id="mShareBtn" class="btn btn--wide" type="button">Share</button>
+            <button id="mFindBtn" class="btn btn--wide" type="button">Find</button>
           </div>
         </div>
       </section>
@@ -118,29 +129,35 @@
     <!-- Share / QR Modal -->
     <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Share">
       <div class="modal__backdrop" data-close="1"></div>
+
       <div class="modal__sheet">
         <div class="modal__top">
           <div class="modal__title" id="modalTitle">Share</div>
           <button class="modal__close" type="button" data-close="1" aria-label="Close">✕</button>
         </div>
+
         <div class="modal__content">
           <div class="modal__qrWrap">
             <img id="modalQr" class="modal__qr" alt="QR code" />
           </div>
+
           <div class="modal__row">
-            <div id="modalHint" class="modal__hint"></div>
             <input id="shareLink" class="modal__input" type="text" readonly />
-            <button id="copyBtn" class="btn btn--primary" type="button">Copy</button>
+            <button id="copyBtn" class="btn" type="button">Copy</button>
           </div>
+
+          <!-- IMPORTANT: prevents JS crash + shows “Scan/copy” text -->
+          <div id="modalHint" class="modal__hint"></div>
         </div>
       </div>
     </div>
 
     <footer class="footer">
-      <span>© <span id="year"></span> Highlight Industries • <span id="buildTag">v5-1772214000</span></span>
+      <span>© <span id="year"></span> Highlight Industries</span>
     </footer>
   </div>
 
-  <script src="./app.js?v=1772213699" defer></script>
+  <!-- Keep your existing app.js (CSV + buttons) -->
+  <script src="./app.js?v=999" defer></script>
 </body>
 </html>

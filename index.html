@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Highlight Digital Card</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Highlight Digital Card</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<div class="container">
+<div class="page-wrap">
 
   <!-- HEADER -->
   <div class="header">
-    <img src="./assets/header.png" alt="Highlight Industries">
+    <img src="assets/header.png" alt="Highlight Industries" />
   </div>
 
   <!-- SEARCH -->
-  <div class="search-row">
-    <input id="searchInput" placeholder="Search employee...">
-    <button onclick="openEmployee()">Open</button>
+  <div class="search-bar">
+    <input type="text" value="Jessica Flanders" />
+    <button>Open</button>
+    <button>Clear</button>
   </div>
 
-  <!-- DESKTOP CARD -->
-  <div class="desk-card">
+  <!-- CARD -->
+  <div class="card">
 
     <div class="desk-left">
-      <h1 id="empName"></h1>
-      <h2 id="empTitle"></h2>
+      <h1>Jessica Flanders</h1>
+      <h2>E-Commerce & Inventory Administrator</h2>
+      <div class="line"></div>
 
-      <div class="divider"></div>
-
-      <div class="info">📞 <span id="empPhone"></span></div>
-      <div class="info">✉️ <span id="empEmail"></span></div>
-      <div class="info">🌐 <span id="empWebsite"></span></div>
+      <div class="info">
+        <div>jessica.flanders@highlightindustries.com</div>
+        <div>+1-616-531-2464 x242</div>
+        <div>www.highlightindustries.com</div>
+      </div>
 
       <div class="buttons">
-        <button onclick="downloadVCard()">Save to Contacts</button>
-        <button onclick="openShare()">Send to Phone</button>
+        <button class="primary">Save to Contacts</button>
+        <button class="primary">Send to Phone</button>
       </div>
     </div>
 
     <div class="desk-right">
-      <div class="photo-wrapper">
-        <img id="empPhoto" class="photo">
+      <div class="photo-frame">
+        <img src="assets/jessica-flanders.jpg" alt="Employee Photo">
       </div>
     </div>
 
@@ -51,15 +52,5 @@
 
 </div>
 
-<!-- SHARE MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <h3>Scan to open on phone</h3>
-    <img id="qr">
-    <button onclick="closeShare()">Close</button>
-  </div>
-</div>
-
-<script src="app.js"></script>
 </body>
 </html>

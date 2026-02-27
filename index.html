@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Highlight Digital Contact</title>
+
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+  <meta name="theme-color" content="#3F845B" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css?v=21" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- DESKTOP LAYOUT -->
+  <header class="desk-header" id="deskHeader" aria-label="Header (desktop)">
+    <img class="desk-banner" src="./assets/header.png" alt="Highlight Industries, Inc." />
+    <div class="desk-topbar">
+      <div class="search-wrap">
+        <label class="sr-only" for="employeeSearch">Find an employee</label>
+        <input id="employeeSearch" type="search" placeholder="Search employees…" autocomplete="off" />
+        <div class="search-actions">
+          <button class="btn btn-ghost" id="openBtn" type="button">Open</button>
+          <button class="btn btn-ghost" id="clearBtn" type="button" title="Clear">Clear</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section class="desk-card" id="deskCard" aria-label="Digital business card (desktop)">
+      <div class="desk-left">
+        <h1 class="name" id="nameDesk">—</h1>
+        <div class="title" id="titleDesk">—</div>
+        <div class="rule"></div>
+
+        <div class="info">
+          <a class="info-row" id="emailLinkDesk" href="#">
+            <span class="icon" aria-hidden="true">✉️</span>
+            <span id="emailDesk">—</span>
+          </a>
+          <a class="info-row" id="phoneLinkDesk" href="#">
+            <span class="icon" aria-hidden="true">👤</span>
+            <span id="phoneDesk">—</span>
+          </a>
+          <a class="info-row" id="webLinkDesk" href="#" target="_blank" rel="noopener">
+            <span class="icon" aria-hidden="true">🌐</span>
+            <span id="webDesk">—</span>
+          </a>
+        </div>
+
+        <div class="desk-cta">
+          <button class="btn btn-primary" id="saveBtnDesk" type="button">Save to Contacts</button>
+          <button class="btn btn-primary" id="sendBtnDesk" type="button">Send to Phone</button>
+        </div>
+      </div>
+
+      <div class="desk-right">
+        <div class="photo-frame">
+          <img id="photoDesk" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- MOBILE LAYOUT (forced via ?view=mobile) -->
+    <section class="mob-shell" id="mobShell" aria-label="Digital business card (mobile)">
+      <div class="mob-hero">
+        <img id="photoMob" class="mob-hero-img" alt="" />
+      </div>
+
+      <div class="mob-band">
+        <div class="mob-qr-circle" aria-label="QR code">
+          <img id="qrMob" class="mob-qr-img" alt="QR code" />
+        </div>
+
+        <div class="mob-band-text">
+          <h1 class="mob-name" id="nameMob">—</h1>
+          <div class="mob-title" id="titleMob">—</div>
+        </div>
+      </div>
+
+      <div class="mob-sheet">
+        <div class="mob-info">
+          <a class="mob-row" id="phoneLinkMob" href="#">
+            <span class="mob-dot" aria-hidden="true">📞</span>
+            <span id="phoneMob">—</span>
+          </a>
+          <a class="mob-row" id="webLinkMob" href="#" target="_blank" rel="noopener">
+            <span class="mob-dot" aria-hidden="true">🌐</span>
+            <span id="webMob">—</span>
+          </a>
+          <a class="mob-row" id="emailLinkMob" href="#">
+            <span class="mob-dot" aria-hidden="true">✉️</span>
+            <span id="emailMob">—</span>
+          </a>
+        </div>
+
+        <div class="mob-buttons">
+          <button class="btn btn-dark" id="saveBtnMob" type="button">Save to Contacts</button>
+          <button class="btn btn-dark" id="shareBtnMob" type="button">Share</button>
+          <button class="btn btn-dark" id="findBtnMob" type="button">Find</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SEND TO PHONE MODAL (desktop) -->
+  <dialog class="modal" id="sendModal">
+    <form method="dialog" class="modal-inner">
+      <div class="modal-head">
+        <div class="modal-kicker">SEND TO PHONE</div>
+        <div class="modal-title">Share this contact</div>
+        <button class="modal-x" value="cancel" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modal-grid">
+        <div class="qr-panel">
+          <div class="qr-label">Scan to open on your phone</div>
+          <div class="qr-box">
+            <img id="qrDesk" class="qr-img" alt="QR code" />
+          </div>
+        </div>
+
+        <div class="share-panel">
+          <button class="btn btn-light" id="nativeShareBtn" type="button">Share (AirDrop / Messages / Mail)</button>
+          <button class="btn btn-light" id="copyLinkBtn" type="button">Copy Link</button>
+          <button class="btn btn-light" id="textLinkBtn" type="button">Text Link</button>
+          <button class="btn btn-light" id="emailLinkBtn" type="button">Email Link</button>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- FIND MODAL (mobile) -->
+  <dialog class="modal" id="findModal">
+    <form method="dialog" class="modal-inner">
+      <div class="modal-head">
+        <div class="modal-kicker">FIND</div>
+        <div class="modal-title">Find an employee</div>
+        <button class="modal-x" value="cancel" aria-label="Close">✕</button>
+      </div>
+
+      <div class="find-body">
+        <label class="sr-only" for="employeeSearchMob">Search employees</label>
+        <input id="employeeSearchMob" type="search" placeholder="Search employees…" autocomplete="off" />
+        <div class="find-results" id="findResults"></div>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./app.js?v=21" defer></script>
+</body>
+</html>

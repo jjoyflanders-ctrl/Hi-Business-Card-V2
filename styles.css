@@ -139,7 +139,8 @@ body{
 
 .card{
   width:min(1180px, 96vw);
-  height:520px;
+  min-height:520px;
+  height:auto;
   background:transparent;
   border-radius:var(--radius);
   overflow:hidden;

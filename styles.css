@@ -54,7 +54,7 @@ body{
   background:transparent;
   position:relative;
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:85% 15%;
   border-radius:28px;
   overflow:hidden;
 }

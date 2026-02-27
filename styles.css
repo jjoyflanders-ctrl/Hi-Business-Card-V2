@@ -59,7 +59,7 @@ body{
 
 /* LEFT BLACK SIDE */
 .desk-left{
-  width:68%;
+  width:75%;
   background:#000;
   color:white;
   padding:60px;
@@ -107,7 +107,7 @@ body{
 
 /* RIGHT WHITE SIDE */
 .desk-right{
-  width:32%;
+  width:25%;
   background:#f4f4f4;
   position:relative;
 }

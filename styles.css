@@ -51,6 +51,7 @@ body{
 
 /* CARD */
 .card{
+  background:transparent;
   position:relative;
   display:grid;
   grid-template-columns:1fr 1fr;

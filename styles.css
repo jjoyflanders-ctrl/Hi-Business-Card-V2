@@ -417,33 +417,27 @@ body{
 .loadError.is-open{display:block}
 
 /* ===== Responsive ===== */
-@media (max-width: 860px){
-  /* Keep the header image on mobile */
+}/* MOBILE MODE
+   - Triggers on smaller widths
+   - Also triggers on touch phones even if Safari reports a wide desktop viewport
+*/
+@media (max-width: 1024px), (hover: none) and (pointer: coarse){
+  /* Keep the header image visible on mobile */
   .topbar{display:block;}
-  /* Hide desktop search controls on mobile (optional) */
+
+  /* Hide search controls row on mobile */
   .topbar__controls{display:none;}
 
   .stage{padding:14px 10px 22px;}
   .card{display:none;}
   .mcard{display:block;}
 }
-.buildBadge{
-  position:sticky;
-  top:0;
-  z-index:9999;
-  margin:10px auto 0;
-  padding:8px 12px;
-  width:fit-content;
-  border-radius:999px;
-  background:#ff3b3b;
-  color:#fff;
-  font-weight:900;
-  letter-spacing:.4px;
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
-}
-@media (max-width: 860px){
+
+/* Debug badge text: should show on phones once mobile mode is active */
+@media (max-width: 1024px), (hover: none) and (pointer: coarse){
   .buildBadge::after{
     content:" • MOBILE ACTIVE";
     font-weight:900;
   }
+}
 }

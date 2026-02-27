@@ -1,7 +1,7 @@
 /* Highlight Digital Contact - New Design (CSV powered)
    - Employees loaded from ./employees.csv
    - Search employees via query param ?u=slug
-   - Share + Send to Phone (QR + share sheet)
+   - Share + Send to Phone (QR modal)
    - Save to Contacts (vCard download)
 */
 
@@ -55,7 +55,6 @@ function baseDir(){
   // Always resolve relative to current page location (works on GitHub Pages subpaths)
   const u = new URL(window.location.href);
   u.hash = "";
-  // Ensure we end with a trailing slash directory
   const p = u.pathname;
   if (p.endsWith("/")) return u;
   u.pathname = p.substring(0, p.lastIndexOf("/") + 1);
@@ -136,8 +135,7 @@ async function loadEmployees(){
   clearLoadError();
   const dir = baseDir();
   const csvUrl = new URL("./employees.csv", dir);
-  // cache-bust so service worker can't trap older CSV
-  csvUrl.searchParams.set("v", String(Date.now()));
+  csvUrl.searchParams.set("v", String(Date.now())); // cache-bust
 
   try{
     const res = await fetch(csvUrl.toString(), { cache: "no-store" });
@@ -161,12 +159,11 @@ async function loadEmployees(){
     if (!EMPLOYEES.length) throw new Error("employees.csv has no rows");
   }catch(err){
     showLoadError("Employee list failed to load. Make sure employees.csv is in the same folder as index.html, then refresh.");
-    // fallback so UI still works
     EMPLOYEES = [{
       slug: "jessica-flanders",
       firstName: "Jessica",
       lastName: "Flanders",
-      title: "E‑commerce & Inventory Administrator",
+      title: "E-commerce & Inventory Administrator",
       company: "Highlight Industries, Inc.",
       phone: "616-531-2464",
       phoneExt: "242",
@@ -186,39 +183,62 @@ function renderEmployee(emp){
   const web = emp.website || "";
 
   // Desktop
-  $("#empName").textContent = name || "—";
-  $("#empTitle").textContent = title || "—";
-  $("#empPhone").textContent = phone || "—";
-  $("#empEmail").textContent = email || "—";
-  $("#empWeb").textContent = web ? web.replace(/^https?:\/\//, "") : "—";
+  const empName = $("#empName");
+  const empTitle = $("#empTitle");
+  const empPhone = $("#empPhone");
+  const empEmail = $("#empEmail");
+  const empWeb = $("#empWeb");
 
-  $("#phoneLink").href = emp.phone ? `tel:${(emp.phone||"").replace(/[^0-9+]/g,"")}` : "#";
-  $("#emailLink").href = email ? `mailto:${email}` : "#";
-  $("#webLink").href = web || "#";
+  if (empName) empName.textContent = name || "—";
+  if (empTitle) empTitle.textContent = title || "—";
+  if (empPhone) empPhone.textContent = phone || "—";
+  if (empEmail) empEmail.textContent = email || "—";
+  if (empWeb) empWeb.textContent = web ? web.replace(/^https?:\/\//, "") : "—";
+
+  const phoneLink = $("#phoneLink");
+  const emailLink = $("#emailLink");
+  const webLink = $("#webLink");
+  if (phoneLink) phoneLink.href = emp.phone ? `tel:${(emp.phone||"").replace(/[^0-9+]/g,"")}` : "#";
+  if (emailLink) emailLink.href = email ? `mailto:${email}` : "#";
+  if (webLink) webLink.href = web || "#";
 
   // Mobile
-  $("#mName").textContent = name || "—";
-  $("#mTitle").textContent = title || "—";
-  $("#mPhone").textContent = phone || "—";
-  $("#mEmail").textContent = email || "—";
-  $("#mWeb").textContent = web ? web.replace(/^https?:\/\//, "") : "—";
+  const mName = $("#mName");
+  const mTitle = $("#mTitle");
+  const mPhone = $("#mPhone");
+  const mEmail = $("#mEmail");
+  const mWeb = $("#mWeb");
 
-  $("#mPhoneLink").href = emp.phone ? `tel:${(emp.phone||"").replace(/[^0-9+]/g,"")}` : "#";
-  $("#mEmailLink").href = email ? `mailto:${email}` : "#";
-  $("#mWebLink").href = web || "#";
+  if (mName) mName.textContent = name || "—";
+  if (mTitle) mTitle.textContent = title || "—";
+  if (mPhone) mPhone.textContent = phone || "—";
+  if (mEmail) mEmail.textContent = email || "—";
+  if (mWeb) mWeb.textContent = web ? web.replace(/^https?:\/\//, "") : "—";
+
+  const mPhoneLink = $("#mPhoneLink");
+  const mEmailLink = $("#mEmailLink");
+  const mWebLink = $("#mWebLink");
+  if (mPhoneLink) mPhoneLink.href = emp.phone ? `tel:${(emp.phone||"").replace(/[^0-9+]/g,"")}` : "#";
+  if (mEmailLink) mEmailLink.href = email ? `mailto:${email}` : "#";
+  if (mWebLink) mWebLink.href = web || "#";
 
   // Photo with fallback
   const src = emp.photo ? emp.photo : FALLBACK_PHOTO;
-  $("#heroImg").src = src;
-  $("#mHeroImg").src = src;
+  const heroImg = $("#heroImg");
+  const mHeroImg = $("#mHeroImg");
+  if (heroImg) heroImg.src = src;
+  if (mHeroImg) mHeroImg.src = src;
 
   // Mobile QR between photo and name
   const url = contactUrl();
-  $("#mQrImg").src = qrUrlFor(url, 220);
+  const mQrImg = $("#mQrImg");
+  if (mQrImg) mQrImg.src = qrUrlFor(url, 220);
 
   // Modal defaults
-  $("#shareLink").value = url;
-  $("#modalQr").src = qrUrlFor(url, 260);
+  const shareLink = $("#shareLink");
+  const modalQr = $("#modalQr");
+  if (shareLink) shareLink.value = url;
+  if (modalQr) modalQr.src = qrUrlFor(url, 260);
 }
 
 function findEmployeeBySlug(slug){
@@ -227,6 +247,8 @@ function findEmployeeBySlug(slug){
 
 function buildSearchResults(items){
   const box = $("#searchResults");
+  if (!box) return;
+
   box.innerHTML = "";
   if (!items.length){
     const div = document.createElement("div");
@@ -235,6 +257,7 @@ function buildSearchResults(items){
     box.appendChild(div);
     return;
   }
+
   items.slice(0, 10).forEach(emp => {
     const row = document.createElement("div");
     row.className = "search__item";
@@ -254,19 +277,20 @@ function buildSearchResults(items){
     row.addEventListener("click", () => {
       loadEmployee(emp.slug);
       closeSearchResults();
-      $("#searchInput").blur();
+      $("#searchInput")?.blur?.();
     });
 
     box.appendChild(row);
   });
 }
 
-function openSearchResults(){ $("#searchResults").classList.add("is-open"); }
-function closeSearchResults(){ $("#searchResults").classList.remove("is-open"); }
+function openSearchResults(){ $("#searchResults")?.classList.add("is-open"); }
+function closeSearchResults(){ $("#searchResults")?.classList.remove("is-open"); }
 
 function wireSearch(){
   const input = $("#searchInput");
   const btn = $("#searchBtn");
+  if (!input || !btn) return;
 
   const run = () => {
     const q = (input.value || "").trim().toLowerCase();
@@ -363,12 +387,37 @@ function downloadText(filename, text, mime){
   }, 0);
 }
 
-function openModal(title, hint){
-  $("#modalTitle").textContent = title || "Share";
-  $("#modalHint").textContent = hint || "Scan the QR code or copy the link.";
-  $("#modal").classList.add("is-open");
+/* -------- Modal: ultra-safe, auto-creates modalHint -------- */
+function ensureModalHint(){
+  const content = document.querySelector(".modal__content");
+  if (!content) return null;
+
+  let hint = $("#modalHint");
+  if (!hint){
+    hint = document.createElement("div");
+    hint.id = "modalHint";
+    hint.className = "modal__hint";
+    content.appendChild(hint);
+  }
+  return hint;
 }
-function closeModal(){ $("#modal").classList.remove("is-open"); }
+
+function openModal(title, hint){
+  const modal = $("#modal");
+  if (!modal) return;
+
+  const t = $("#modalTitle");
+  if (t) t.textContent = title || "Share";
+
+  const h = ensureModalHint();
+  if (h) h.textContent = hint || "Scan the QR code or copy the link.";
+
+  modal.classList.add("is-open");
+}
+
+function closeModal(){
+  $("#modal")?.classList.remove("is-open");
+}
 
 async function tryNativeShare(){
   const url = contactUrl();
@@ -388,70 +437,91 @@ async function tryNativeShare(){
 }
 
 function wireActions(){
-  const save = () => {
-    const emp = findEmployeeBySlug(getParam("u") || EMPLOYEES[0]?.slug);
-    const vcf = vcardFor(emp);
-    downloadText(`${emp.slug}.vcf`, vcf, "text/vcard");
-  };
+  try{
+    const save = () => {
+      const emp = findEmployeeBySlug(getParam("u") || EMPLOYEES[0]?.slug);
+      const vcf = vcardFor(emp);
+      downloadText(`${emp.slug}.vcf`, vcf, "text/vcard");
+    };
 
-  $("#saveBtn")?.addEventListener("click", save);
-  $("#mSaveBtn")?.addEventListener("click", save);
+    $("#saveBtn")?.addEventListener("click", save);
+    $("#mSaveBtn")?.addEventListener("click", save);
 
-  const share = async () => {
-    const ok = await tryNativeShare();
-    if (ok) return;
-    const url = contactUrl();
-    $("#shareLink").value = url;
-    $("#modalQr").src = qrUrlFor(url, 260);
-    openModal("Share", "Scan the QR code, or copy the link.");
-  };
+    const share = async () => {
+      // Share tries native share first, then falls back to modal
+      const ok = await tryNativeShare();
+      if (ok) return;
 
-  $("#shareBtn")?.addEventListener("click", share);
-  $("#mShareBtn")?.addEventListener("click", share);
+      const url = contactUrl();
+      const shareLink = $("#shareLink");
+      const modalQr = $("#modalQr");
+      if (shareLink) shareLink.value = url;
+      if (modalQr) modalQr.src = qrUrlFor(url, 260);
 
-  const send = () => {
-    const url = contactUrl();
-    $("#shareLink").value = url;
-    $("#modalQr").src = qrUrlFor(url, 260);
-    openModal("Send to Phone", "Scan this QR code with your phone to open the contact.");
-  };
+      openModal("Share", "Scan the QR code, or copy the link.");
+    };
 
-  $("#sendBtn")?.addEventListener("click", send);
+    $("#shareBtn")?.addEventListener("click", share);
+    $("#mShareBtn")?.addEventListener("click", share);
 
-  $("#copyBtn")?.addEventListener("click", async () => {
-    try{
-      await navigator.clipboard.writeText($("#shareLink").value);
-      $("#copyBtn").textContent = "Copied!";
-      setTimeout(() => $("#copyBtn").textContent = "Copy", 900);
-    }catch{
-      $("#shareLink").select();
-      document.execCommand("copy");
-      $("#copyBtn").textContent = "Copied!";
-      setTimeout(() => $("#copyBtn").textContent = "Copy", 900);
-    }
-  });
+    const send = () => {
+      // Send to Phone ALWAYS opens QR modal (no share sheet)
+      const url = contactUrl();
+      const shareLink = $("#shareLink");
+      const modalQr = $("#modalQr");
+      if (shareLink) shareLink.value = url;
+      if (modalQr) modalQr.src = qrUrlFor(url, 260);
 
-  $("#modal")?.addEventListener("click", (e) => {
-    const close = e.target?.getAttribute?.("data-close");
-    if (close) closeModal();
-  });
+      openModal("Send to Phone", "Scan this QR code with your phone to open the contact.");
+    };
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeModal();
-  });
+    $("#sendBtn")?.addEventListener("click", send);
 
-  $("#mFindBtn")?.addEventListener("click", () => {
-    const q = prompt("Search employees (name or title):");
-    if (!q) return;
-    const qq = q.trim().toLowerCase();
-    const emp = EMPLOYEES.find(e =>
-      fullName(e).toLowerCase().includes(qq) ||
-      (e.title||"").toLowerCase().includes(qq) ||
-      (e.slug||"").includes(slugify(qq))
-    );
-    if (emp) loadEmployee(emp.slug);
-    else alert("No match found.");
-  });
+    $("#copyBtn")?.addEventListener("click", async () => {
+      const input = $("#shareLink");
+      if (!input) return;
+      try{
+        await navigator.clipboard.writeText(input.value);
+        const btn = $("#copyBtn");
+        if (btn){
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy"), 900);
+        }
+      }catch{
+        input.select();
+        document.execCommand("copy");
+        const btn = $("#copyBtn");
+        if (btn){
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy"), 900);
+        }
+      }
+    });
+
+    $("#modal")?.addEventListener("click", (e) => {
+      const close = e.target?.getAttribute?.("data-close");
+      if (close) closeModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    $("#mFindBtn")?.addEventListener("click", () => {
+      const q = prompt("Search employees (name or title):");
+      if (!q) return;
+      const qq = q.trim().toLowerCase();
+      const emp = EMPLOYEES.find(e =>
+        fullName(e).toLowerCase().includes(qq) ||
+        (e.title||"").toLowerCase().includes(qq) ||
+        (e.slug||"").includes(slugify(qq))
+      );
+      if (emp) loadEmployee(emp.slug);
+      else alert("No match found.");
+    });
+  }catch(err){
+    showLoadError("Buttons failed to initialize. Please refresh (and make sure app.js is updated).");
+  }
 }
 
 function loadEmployee(slug){
@@ -460,10 +530,10 @@ function loadEmployee(slug){
   renderEmployee(emp);
 }
 
-function registerSW(){ /* disabled in v5 to prevent stale caching during iteration */ }
+function registerSW(){ /* disabled during iteration */ }
 
 async function main(){
-  $("#year").textContent = String(new Date().getFullYear());
+  $("#year") && ($("#year").textContent = String(new Date().getFullYear()));
 
   await loadEmployees();
 

@@ -427,3 +427,17 @@ body{
   .card{display:none;}
   .mcard{display:block;}
 }
+.buildBadge{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  margin:10px auto 0;
+  padding:8px 12px;
+  width:fit-content;
+  border-radius:999px;
+  background:#ff3b3b;
+  color:#fff;
+  font-weight:900;
+  letter-spacing:.4px;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}

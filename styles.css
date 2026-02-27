@@ -441,3 +441,9 @@ body{
   letter-spacing:.4px;
   box-shadow:0 12px 30px rgba(0,0,0,.35);
 }
+@media (max-width: 860px){
+  .buildBadge::after{
+    content:" • MOBILE ACTIVE";
+    font-weight:900;
+  }
+}

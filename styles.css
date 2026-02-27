@@ -63,7 +63,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  width:75%; /* 👈 THIS controls seam */
+  width:85%; /* 👈 THIS controls seam */
   background:#000;
   z-index:1;
 }

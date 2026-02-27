@@ -74,34 +74,25 @@ body{
 .search-actions{ display:flex; gap:8px; }
 .topbar-actions{ display:flex; gap:10px; flex: 0 0 auto; }
 
-.desk-card{
-  width: min(1120px, 100%);
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow:hidden;
-  display:none;
-  min-height: 520px;
+/* ===== Desktop Layout Split ===== */
+
+.desk-card {
+  display: flex;
+  width: 100%;
+  min-height: 500px;
+}
+
+.desk-left {
+  width: 65%;            /* Black background extended */
+  background: #000;
+  padding: 60px 60px 80px 60px;
   position: relative;
-  /* breathing room between search bar and the card */
-  margin-top: 22px;
 }
-.desk-left{
-  /* slightly smaller bottom padding so CTAs sit lower (closer to the right-panel outline level) */
-  padding: 54px 52px 0px;
-  flex: 1 1 58%;
-  display:flex;
-  flex-direction:column;
-}
-.desk-right{
-  flex: 1 1 42%;
-  background: linear-gradient(120deg, #2a8b5f 0%, #2f7f57 45%, #2a8b5f 100%);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  /* angled edge like the reference */
-  clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 0% 100%);
+
+.desk-right {
+  width: 35%;
+  background: #f3f3f3;
+  position: relative;
 }
 
 /* inner white outline on the green panel (desktop) */

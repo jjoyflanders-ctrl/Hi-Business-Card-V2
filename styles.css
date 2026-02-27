@@ -23,7 +23,7 @@ body{
   flex-direction:column;
 }
 
-/* ===== Header (always visible) ===== */
+/* ===== Header (visible on desktop + mobile) ===== */
 .topbar{
   background:var(--dark);
   padding:0;
@@ -35,7 +35,7 @@ body{
   height:auto;
 }
 
-/* Desktop search row (hidden on mobile) */
+/* Desktop search row (we hide this on mobile) */
 .topbar__controls{
   display:flex;
   gap:14px;
@@ -43,6 +43,7 @@ body{
   justify-content:space-between;
   padding:12px 14px 14px;
 }
+
 .search{
   position:relative;
   flex:1;
@@ -132,7 +133,7 @@ body{
   grid-template-columns: 1.05fr .95fr;
 }
 
-/* important: ensures buttons are always clickable */
+/* ensure buttons are clickable */
 .card__left{ position:relative; z-index:5; }
 
 .card__left{
@@ -182,7 +183,7 @@ body{
 }
 .detail__text{opacity:.9}
 
-/* 3 desktop buttons */
+/* desktop actions row */
 .actions{
   margin-top:auto;
   display:flex;
@@ -235,7 +236,7 @@ body{
   box-shadow:var(--shadow);
 }
 
-/* Photo: moved up so mouth isn't cut off */
+/* photo */
 .mcard__photoWrap{
   position:relative;
   height:360px;
@@ -245,11 +246,9 @@ body{
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:50% 16%; /* <- key: moves face UP */
+  object-position:50% 10%; /* moves face up (try 8–18%) */
   display:block;
 }
-
-/* Fade pushed lower */
 .mcard__fade{
   position:absolute; inset:0;
   background:linear-gradient(
@@ -416,16 +415,27 @@ body{
 }
 .loadError.is-open{display:block}
 
-/* ===== Responsive ===== */
-}/* MOBILE MODE
-   - Triggers on smaller widths
-   - Also triggers on touch phones even if Safari reports a wide desktop viewport
+/* ===== Debug badge (optional) ===== */
+.buildBadge{
+  position:sticky;
+  top:0;
+  z-index:9999;
+  margin:10px auto 0;
+  padding:8px 12px;
+  width:fit-content;
+  border-radius:999px;
+  background:#ff3b3b;
+  color:#fff;
+  font-weight:900;
+  letter-spacing:.4px;
+  box-shadow:0 12px 30px rgba(0,0,0,.35);
+}
+
+/* ===== Mobile mode =====
+   Uses BOTH width and touch detection to avoid iOS “desktop request” weirdness
 */
 @media (max-width: 1024px), (hover: none) and (pointer: coarse){
-  /* Keep the header image visible on mobile */
   .topbar{display:block;}
-
-  /* Hide search controls row on mobile */
   .topbar__controls{display:none;}
 
   .stage{padding:14px 10px 22px;}
@@ -433,11 +443,9 @@ body{
   .mcard{display:block;}
 }
 
-/* Debug badge text: should show on phones once mobile mode is active */
 @media (max-width: 1024px), (hover: none) and (pointer: coarse){
   .buildBadge::after{
     content:" • MOBILE ACTIVE";
     font-weight:900;
   }
-}
 }

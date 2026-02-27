@@ -225,10 +225,16 @@ body{
 }
 
 .photoPane__fade{
-  position:absolute; inset:0;
+  position:absolute;
+  inset:0;
   z-index:2;
-  /* Gray -> transparent fade, left side stronger so it blends into the card */
-  background:linear-gradient(90deg, rgba(189,189,189,1) 0%, rgba(189,189,189,.92) 18%, rgba(189,189,189,.60) 34%, rgba(189,189,189,.00) 60%);
+  background:linear-gradient(
+    90deg,
+    rgba(189,189,189,1) 0%,
+    rgba(189,189,189,.85) 14%,
+    rgba(189,189,189,.45) 22%,
+    rgba(189,189,189,.00) 35%
+  );
   pointer-events:none;
 }
 

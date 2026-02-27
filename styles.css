@@ -440,3 +440,7 @@ body{
 
 .loadError{display:none; max-width:1180px; margin:10px auto 0; padding:10px 14px; border-radius:14px; background:#2a1414; color:#ffd6d6; border:1px solid rgba(255,255,255,.12); font-weight:800}
 .loadError.is-open{display:block}
+
+@media (max-width: 860px){
+  .topbar{ display:none; }
+}

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Highlight Digital Contact</title>
+
+  <link rel="manifest" href="./manifest.webmanifest?v=1772213699" />
+  <link rel="icon" href="./assets/icon-192.png" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+  <meta name="theme-color" content="#3F845B" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css?v=1772213699" />
+</head>
+<body>
+  <div class="app">
+    <!-- Top banner (desktop) -->
+    <header class="topbar" aria-label="Highlight header">
+      <img class="topbar__img" src="./assets/header.png" alt="Highlight Industries, Inc." />
+      <div class="topbar__controls">
+        <div class="search">
+          <input id="searchInput" class="search__input" type="search" placeholder="Search employees…" autocomplete="off" />
+          <button id="searchBtn" class="search__btn" type="button" title="Search">Find</button>
+          <div id="searchResults" class="search__results" role="listbox" aria-label="Employee results"></div>
+        </div>
+</div>
+    </header>
+<div id="loadError" class="loadError" role="status" aria-live="polite"></div>
+
+    <!-- Desktop layout -->
+    <main class="stage">
+      <section class="card" aria-label="Contact card">
+        <div class="card__left">
+          <div class="identity">
+            <h1 id="empName" class="identity__name">—</h1>
+            <div id="empTitle" class="identity__title">—</div>
+            <div class="identity__rule"></div>
+          </div>
+
+          <div class="details" aria-label="Contact details">
+            <a id="phoneLink" class="detail" href="#">
+              <span class="detail__icon" aria-hidden="true">📞</span>
+              <span id="empPhone" class="detail__text">—</span>
+            </a>
+            <a id="emailLink" class="detail" href="#">
+              <span class="detail__icon" aria-hidden="true">✉️</span>
+              <span id="empEmail" class="detail__text">—</span>
+            </a>
+            <a id="webLink" class="detail" href="#" target="_blank" rel="noreferrer">
+              <span class="detail__icon" aria-hidden="true">🌐</span>
+              <span id="empWeb" class="detail__text">—</span>
+            </a>
+          </div>
+
+          <div class="actions">
+            <button id="saveBtn" class="btn btn--primary btn--wide" type="button">Save to Contacts</button>
+            <button id="shareBtn" class="btn btn--ghost btn--wide" type="button">Share</button>
+            <button id="sendBtn" class="btn btn--primary btn--wide" type="button">Send to Phone</button>
+          </div>
+        </div>
+
+        <div class="card__right" aria-label="Photo area">
+          <div id="photoPane" class="photoPane">
+            <img id="heroImg" class="photoPane__img" alt="" />
+            <div class="photoPane__fade"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mobile layout -->
+      <section class="mcard" aria-label="Mobile contact card">
+<div class="mcard__photoWrap" aria-label="Employee photo">
+          <img id="mHeroImg" class="mcard__photo" alt="" />
+          <div class="mcard__fade"></div>
+        </div>
+
+        <!-- QR between photo and name -->
+        <div class="mcard__qr" aria-label="Share QR code">
+          <img id="mQrImg" class="mcard__qrImg" alt="QR code for this contact" />
+          <div class="mcard__qrHint">Scan to open this contact</div>
+        </div>
+
+        <div class="mcard__body">
+          <div class="mcard__who">
+            <div id="mName" class="mcard__name">—</div>
+            <div id="mTitle" class="mcard__title">—</div>
+          </div>
+
+          <div class="mcard__details">
+            <a id="mPhoneLink" class="mDetail" href="#">
+              <span class="mDetail__icon" aria-hidden="true">📞</span>
+              <span id="mPhone" class="mDetail__text">—</span>
+            </a>
+            <a id="mWebLink" class="mDetail" href="#" target="_blank" rel="noreferrer">
+              <span class="mDetail__icon" aria-hidden="true">🌐</span>
+              <span id="mWeb" class="mDetail__text">—</span>
+            </a>
+            <a id="mEmailLink" class="mDetail" href="#">
+              <span class="mDetail__icon" aria-hidden="true">✉️</span>
+              <span id="mEmail" class="mDetail__text">—</span>
+            </a>
+          </div>
+
+          <div class="mcard__actions">
+            <button id="mSaveBtn" class="btn btn--dark btn--wide" type="button">Save to Contacts</button>
+            <button id="mShareBtn" class="btn btn--dark btn--wide" type="button">Share</button>
+            <button id="mFindBtn" class="btn btn--dark btn--wide" type="button">Find</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Share / QR Modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-label="Share">
+      <div class="modal__backdrop" data-close="1"></div>
+      <div class="modal__sheet">
+        <div class="modal__top">
+          <div class="modal__title" id="modalTitle">Share</div>
+          <button class="modal__close" type="button" data-close="1" aria-label="Close">✕</button>
+        </div>
+        <div class="modal__content">
+          <div class="modal__qrWrap">
+            <img id="modalQr" class="modal__qr" alt="QR code" />
+          </div>
+          <div class="modal__row">
+            <input id="shareLink" class="modal__input" type="text" readonly />
+            <button id="copyBtn" class="btn btn--primary" type="button">Copy</button>
+          </div>
+          <div class="modal__hint" id="modalHint">Scan the QR code or copy the link.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> Highlight Industries • <span id="buildTag">v5-1772213699</span></span>
+    </footer>
+  </div>
+
+  <script src="./app.js?v=1772213699" defer></script>
+</body>
+</html>

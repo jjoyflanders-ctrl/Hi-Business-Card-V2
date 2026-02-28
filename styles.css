@@ -619,9 +619,75 @@ a{color:inherit}
     box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
   }
 }
-/* ===== SELECTOR SMOKE TEST ===== */
+/* =========================================
+   DESKTOP MOCKUP (STRUCTURE-BASED, NO CLASS GUESSING)
+   ========================================= */
 @media (min-width: 900px){
-  .deskGreenPanel{ background: lime !important; }
-  .deskPhoto{ background: cyan !important; }
-  .deskPhoto img{ filter: grayscale(100%) !important; }
+
+  /* The whole card */
+  .deskFrame{
+    display:grid !important;
+    grid-template-columns: 1fr 1.15fr !important;
+    align-items:stretch !important;
+    background:#d6d6d6 !important;   /* mock gray */
+    border-radius:24px !important;
+    overflow:hidden !important;
+    height: clamp(520px, 62vh, 660px) !important;
+  }
+
+  /* RIGHT SIDE: name on top, green section pinned to bottom */
+  .deskInfo{
+    display:flex !important;
+    flex-direction:column !important;
+    padding:44px 48px !important;
+    background:#d6d6d6 !important;
+    gap:16px !important;
+  }
+
+  /* GREEN SECTION = whatever the last child is */
+  .deskInfo > :last-child{
+    margin-top:auto !important;
+    background: var(--green) !important;
+    border-radius:18px !important;
+    padding:34px 36px 28px !important;
+    min-height:56% !important; /* slightly above halfway */
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:space-between !important;
+  }
+
+  /* BUTTONS: soft shadow like mock */
+  .deskPills{
+    display:flex !important;
+    gap:22px !important;
+    margin-top:22px !important;
+  }
+
+  .deskPills .pill{
+    flex:1 !important;
+    height:56px !important;
+    border-radius:999px !important;
+    background:#e8e8e8 !important;
+    color: var(--green) !important;
+    border:0 !important;
+    font-weight:800 !important;
+    box-shadow:0 14px 28px rgba(0,0,0,.18) !important;
+  }
+
+  /* LEFT SIDE: photo with a visible gray frame */
+  .deskPhoto{
+    background:#d6d6d6 !important;
+    padding:44px 40px 44px 48px !important; /* creates the frame */
+    display:flex !important;
+    align-items:stretch !important;
+  }
+
+  .deskPhoto img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    border-radius:18px !important;
+    box-shadow:0 18px 40px rgba(0,0,0,.22) !important;
+    filter:none !important; /* make sure grayscale test is gone */
+  }
 }

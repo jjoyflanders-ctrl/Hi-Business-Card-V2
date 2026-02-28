@@ -222,27 +222,34 @@ a{color:inherit}
 
 .optional{display:none}
 
-/* Mobile card */
-.mobCard{display:none}
+/* ===============================
+   MOBILE IMAGE — HARD LOCK
+   =============================== */
+
 .mobTopCard{
   display:grid;
-  grid-template-columns: 44% 56%;
-  background:#dedede;
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow2);
+  grid-template-columns:130px 1fr;
+  gap:16px;
+  align-items:start;      /* critical */
+  margin-bottom:20px;     /* space above green bar */
 }
+
 .mobImage{
-  background:#cfcfcf;
-  display:flex;
-  padding:16px;
+  width:130px;
+  height:160px;           /* locked height */
+  border-radius:14px;
+  overflow:hidden;
+  background:#d0d0d0;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+  flex-shrink:0;          /* prevents resize */
 }
+
 .mobImage img{
   width:100%;
-  border-radius:10px;
+  height:100%;
   object-fit:cover;
-  box-shadow:0 10px 25px rgba(0,0,0,.22);
-  aspect-ratio: 4 / 3;
+  object-position:center top;
+  display:block;
 }
 .mobTitle{
   padding:18px 16px;
@@ -447,4 +454,50 @@ a{color:inherit}
 .mobBottomActions .round.solid{ 
   width:78px;
   height:78px;
+}
+/* =================================
+   MOBILE BOTTOM ACTIONS — ONE ROW
+   ================================= */
+
+.mobBottomActions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:nowrap;        /* no wrapping */
+}
+
+/* Normal round buttons */
+.mobBottomActions .round{
+  flex:0 0 64px;           /* fixed width */
+  height:64px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--green);
+  border:none;
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
+}
+
+.mobBottomActions .round svg{
+  width:30px;
+  height:30px;
+  fill:#fff;
+}
+
+/* Add button = compact pill */
+.mobBottomActions .solid{
+  flex:1;                  /* fills remaining space */
+  height:64px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:0 14px;
+  font-size:14px;
+  font-weight:600;
+  background:var(--green);
+  color:#fff;
 }

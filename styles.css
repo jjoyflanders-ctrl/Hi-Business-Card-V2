@@ -584,7 +584,42 @@ a{color:inherit}
     margin-top: 6px !important;
   }
 }
-/* TEST — if you see a thick purple border, the CSS is updating */
+/* ===== DESKTOP: force details into the green floor area ===== */
 @media (min-width: 900px){
-  .deskFrame{ outline: 12px solid rebeccapurple !important; }
+
+  /* keep your green floor */
+  .deskCard .deskFrame::before{
+    top: 42% !important;          /* raise/lower seam (try 40–46%) */
+    background: var(--green) !important;
+  }
+
+  /* make sure content sits above the floor */
+  .deskCard .deskPhoto,
+  .deskCard .deskInfo{
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* IMPORTANT: stop "transparent panel" from floating too high */
+  .deskCard .deskGreenPanel{
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+
+    /* This is the key: push details DOWN into green */
+    margin-top: clamp(60px, 8vh, 120px) !important;
+    padding: 28px 36px 28px !important;
+  }
+
+  /* make the kv block readable on green */
+  .deskCard .deskGreenPanel .k,
+  .deskCard .deskGreenPanel .v,
+  .deskCard .deskGreenPanel .v a{
+    color: #0b0b0b !important;
+  }
+
+  /* keep pills inside green with shadow */
+  .deskCard .deskPills .pill{
+    box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
+  }
 }

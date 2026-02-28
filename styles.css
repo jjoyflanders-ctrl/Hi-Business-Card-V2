@@ -477,3 +477,21 @@ a{color:inherit}
   max-height:80px;  /* safety cap */
   width:auto;
 }
+/* Bottom row icon images */
+.iconSvg{
+  width:28px;
+  height:28px;
+  display:block;
+}
+
+/* Make all 4 bottom buttons consistent */
+.mobBottomActions .round{
+  width:70px;
+  height:70px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:var(--green);
+  border:none;
+  box-shadow:0 12px 26px rgba(0,0,0,.16);
+}

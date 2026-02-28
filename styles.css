@@ -402,7 +402,7 @@ a{color:inherit}
 
 /* Force the image area to be a square so it cannot run tall */
 .mobImage{
-  width:160px;
+  width:180px;
   aspect-ratio: 1 / 1;
   border-radius:12px;
   overflow:hidden;

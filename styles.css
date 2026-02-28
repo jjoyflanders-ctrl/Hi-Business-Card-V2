@@ -495,3 +495,53 @@ a{color:inherit}
   border:none;
   box-shadow:0 12px 26px rgba(0,0,0,.16);
 }
+/* ===============================
+   MOBILE BOTTOM ICON POLISH
+   =============================== */
+
+.mobBottomActions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+}
+
+/* Normal circular buttons */
+.mobBottomActions .round{
+  width:78px;
+  height:78px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--green);
+  border:none;
+  box-shadow:0 14px 28px rgba(0,0,0,.15);
+}
+
+/* Make icons fill better */
+.mobBottomActions .round svg{
+  width:36px;
+  height:36px;
+  fill:#ffffff;
+}
+/* Add to Contacts = pill style */
+.mobBottomActions .solid{
+  width:auto;
+  padding:0 22px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-weight:600;
+  font-size:14px;
+  background:var(--green);
+  color:#fff;
+}
+
+.mobBottomActions .solid svg{
+  width:22px;
+  height:22px;
+  fill:#fff;
+}

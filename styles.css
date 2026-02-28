@@ -538,3 +538,6 @@ a{color:inherit}
     pointer-events:none;
   }
 }
+@media (min-width: 900px){
+  .deskFrame{ position: relative; }
+}

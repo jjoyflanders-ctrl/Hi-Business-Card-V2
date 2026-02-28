@@ -164,7 +164,9 @@ a{color:inherit}
   padding:56px 46px 56px;
   display:flex;
   flex-direction:column;
-  gap:28px;
+  gap:22px;
+  height:100%;
+  min-height:0;
 }
 .deskName .nameRow{
   font-weight:300;
@@ -181,8 +183,9 @@ a{color:inherit}
   text-transform:uppercase;
 }
 .deskGreenPanel{
+  margin-top:auto; /* pushes green panel to bottom */
   background:var(--green);
-  padding:26px 28px 30px; /* extra bottom padding so pills sit inside */
+  padding:26px 28px 30px;
   border-radius:18px;
   box-shadow:0 14px 30px rgba(0,0,0,.15);
 }

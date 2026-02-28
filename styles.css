@@ -392,3 +392,29 @@ a{color:inherit}
   object-position:center;
   background:transparent;
 }
+/* --- Mobile: top card layout (prevents image overlap) --- */
+.mobTopCard{
+  display:grid;
+  grid-template-columns: 160px 1fr; /* image + text */
+  gap:18px;
+  align-items:stretch;
+}
+
+/* Force the image area to be a square so it cannot run tall */
+.mobImage{
+  width:160px;
+  aspect-ratio: 1 / 1;
+  border-radius:12px;
+  overflow:hidden;
+  background:#d0d0d0;
+  box-shadow:0 14px 30px rgba(0,0,0,.18);
+}
+
+/* Fill the square cleanly */
+.mobImage img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}

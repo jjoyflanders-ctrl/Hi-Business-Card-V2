@@ -546,3 +546,41 @@ a{color:inherit}
     box-shadow:0 14px 28px rgba(0,0,0,.18);
   }
 }
+/* ===== DESKTOP: push contact details into the green floor ===== */
+@media (min-width: 900px){
+
+  /* Make the right side a 2-row grid: top = name/role, bottom = green content */
+  .deskInfo{
+    display:grid !important;
+    grid-template-rows: auto 1fr !important;
+    gap: 10px !important;
+  }
+
+  /* Put the green panel (which holds .kv + buttons) in the bottom row */
+  .deskGreenPanel{
+    grid-row: 2 !important;
+    align-self: stretch !important;
+    margin-top: 0 !important;
+
+    /* sit comfortably in the green floor */
+    padding-top: 34px !important;
+  }
+
+  /* Pull the name/role slightly up (keeps it in the gray) */
+  .deskName{
+    grid-row: 1 !important;
+    align-self: start !important;
+  }
+
+  /* Make sure the kv text is readable on green */
+  .deskGreenPanel .k,
+  .deskGreenPanel .v,
+  .deskGreenPanel .v a{
+    color: #0b0b0b !important;
+  }
+
+  /* Optional: nudge the kv block down a touch so it’s clearly in green */
+  .deskGreenPanel .kv{
+    margin-top: 6px !important;
+  }
+}

@@ -691,3 +691,44 @@ a{color:inherit}
     filter:none !important; /* make sure grayscale test is gone */
   }
 }
+/* ===== DESKTOP: FULL-WIDTH GREEN BOTTOM (like mockup) ===== */
+@media (min-width: 900px){
+
+  /* Make the card a positioning context */
+  .deskFrame{
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Full-width green section across the bottom */
+  .deskFrame::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important;
+    right:0 !important;
+    bottom:0 !important;
+    height:56% !important;            /* keep the height you liked */
+    background: var(--green) !important;
+    z-index:0 !important;
+  }
+
+  /* Put everything above the green "floor" */
+  .deskPhoto,
+  .deskInfo{
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* The right-side green panel should NOT be its own box anymore */
+  .deskInfo > :last-child{
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 34px 36px 28px !important;
+    min-height: auto !important;
+  }
+
+  /* Keep buttons looking like they sit on top (soft shadows) */
+  .deskPills .pill{
+    box-shadow:0 14px 28px rgba(0,0,0,.18) !important;
+  }
+}

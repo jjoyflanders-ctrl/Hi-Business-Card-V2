@@ -444,310 +444,105 @@ a{color:inherit}
   height:34px !important;
   fill:#fff !important;
 }
+/* ===============================
+   MOBILE MIDDLE GREEN BAR (CLEAN)
+   =============================== */
+.mobIconBar{
+  display:flex;
+  flex-direction:row;
+  justify-content:space-evenly;
+  align-items:center;
+
+  background:var(--green);
+  padding:18px 14px 18px;
+  border-radius:0 0 18px 18px;
+  margin-top:0;
+  box-shadow:var(--shadow2);
+}
+.mobIconBar .iconCircle{
+  width:86px;
+  height:86px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  border:4px solid rgba(255,255,255,.75);
+  background:transparent;
+}
+.mobIconBar .iconCircle svg{
+  width:36px;
+  height:36px;
+  fill:#fff;
+}
+
 /* =========================================
-   DESKTOP MOCKUP POLISH (DESKTOP ONLY)
+   DESKTOP MOCKUP FLOOR (FULL WIDTH, RELIABLE)
+   Uses a background gradient (no ::before bugs)
    ========================================= */
 @media (min-width: 900px){
 
-  /* Make the desktop card feel like the mock (fixed height + clean split) */
+  /* Whole card: gray top / green bottom across FULL width (under photo too) */
   .deskFrame{
-    display:grid;
-    grid-template-columns: 1.02fr 1.18fr;
-    align-items:stretch;
+    background: linear-gradient(
+      to bottom,
+      #d6d6d6 0%,
+      #d6d6d6 44%,
+      var(--green) 44%,
+      var(--green) 100%
+    ) !important;
+
+    border-radius:24px;
     overflow:hidden;
-    background:#d6d6d6; /* top/outer light gray like mock */
-  }
+    box-shadow:var(--shadow);
 
-  /* Right side layout: name area on top, green section on bottom */
-  .deskInfo{
     display:grid;
-    grid-template-rows: auto 1fr;  /* name block + green panel block */
-    padding: 44px 48px 44px 48px;
-    background:#d6d6d6;
+    grid-template-columns: 44% 56%;
+    align-items:stretch;
   }
 
-  /* Name block spacing like mock */
-  .deskName{
-    padding-bottom: 18px;
-  }
-  .deskName .nameRow{
-    line-height: 0.95;
+  /* Left side “frame” same gray as mock */
+  .deskPhoto{
+    background: transparent !important; /* gradient handles the background */
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    padding:56px 28px;
+    overflow:hidden;
   }
 
-  /* GREEN SECTION: “whole bottom”, a little higher than halfway */
-  .deskGreenPanel{
-    margin-top: 8px;
-    background: var(--green);
-    border-radius: 18px;
-    padding: 34px 36px 28px;
+  /* Photo: keep color, no grayscale, nice shadow */
+  .deskPhoto img{
+    filter:none !important;
+    width:100%;
+    max-width:420px;
+    height:100%;
+    border-radius:16px;
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+    object-fit:cover;
+    object-position:center;
+    background:transparent;
+  }
+
+  /* Right side */
+  .deskInfo{
+    background: transparent !important; /* gradient is the background */
+    padding:56px 46px;
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
-
-    /* height control: push it slightly above half */
-    min-height: 56%;
+    gap:28px;
   }
 
-  /* Make the KV list feel like the mock */
-  .deskGreenPanel .kv{
-    gap: 10px 18px;
-  }
-
-  /* Buttons live inside green and float a bit with shadow */
-  .deskPills{
-    margin-top: 20px;
-    display:flex;
-    gap: 22px;
-  }
-  .deskPills .pill{
-    flex: 1;
-    height: 56px;
-    border-radius: 999px;
-    background: #e8e8e8;
-    color: var(--green);
-    font-weight: 700;
-    box-shadow: 0 14px 28px rgba(0,0,0,.18);
-    border: 0;
-  }
-
-  /* PHOTO: framed in the same gray, and aligned to name + buttons */
-  .deskPhoto{
-    background:#d6d6d6;            /* frame color = top gray */
-    padding: 44px 40px 44px 48px;  /* match right padding vibe */
-    display:flex;
-    align-items:stretch;
-  }
-
-  /* The photo itself should ONLY span from name top to buttons bottom:
-     we achieve this by matching the right side’s vertical rhythm */
-  .deskPhoto img{
-    width: 100%;
-    height: 100%;
-    max-height: 540px;          /* keeps it from getting gigantic on tall screens */
-    object-fit: cover;
-    border-radius: 16px;
-    display:block;
-    box-shadow: 0 18px 40px rgba(0,0,0,.22);
-  }
-
-  /* Optional: soften the center seam like mock */
-  .deskFrame::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
-  }
-}
-@media (min-width: 900px){
-  .deskFrame{ position: relative; }
-}
-/* =========================================
-   DESKTOP MOCKUP OVERRIDE (force it)
-   ========================================= */
-@media (min-width: 900px){
-
-  /* overall card proportions */
-  .deskCard .deskFrame{
-    display:grid !important;
-    grid-template-columns: 1.02fr 1.18fr !important;
-    align-items:stretch !important;
-    background:#d6d6d6 !important;   /* same light gray as mock */
-    overflow:hidden !important;
-    border-radius: 24px !important;
-    height: clamp(520px, 62vh, 660px) !important; /* keeps it mock-like */
-  }
-
-  /* LEFT photo side = framed */
-  .deskCard .deskPhoto{
-    background:#d6d6d6 !important;
-    padding: 44px 40px 44px 48px !important;
-    display:flex !important;
-    align-items:stretch !important;
-  }
-
-  .deskCard .deskPhoto img{
-    width:100% !important;
-    height:100% !important;      /* key: image fills the framed area */
-    object-fit:cover !important;
-    border-radius: 18px !important;
-    box-shadow: 0 18px 40px rgba(0,0,0,.22) !important; /* subtle shadow */
-  }
-
-  /* RIGHT info side = name top, green bottom */
-  .deskCard .deskInfo{
-    background:#d6d6d6 !important;
-    padding: 44px 48px 44px 48px !important;
-    display:grid !important;
-    grid-template-rows: auto 1fr !important;
-    gap: 14px !important;
-  }
-
-  /* name block spacing like mock */
-  .deskCard .deskName{
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* GREEN section: whole bottom & slightly above halfway */
-  .deskCard .deskGreenPanel{
-    background: var(--green) !important;
-    border-radius: 18px !important;
-    padding: 34px 36px 28px !important;
-
-    display:flex !important;
-    flex-direction:column !important;
-    justify-content:space-between !important;
-
-    min-height: 56% !important;  /* “a little higher than half way” */
-  }
-
-  /* buttons inside green, with soft shadow */
-  .deskCard .deskPills{
-    display:flex !important;
-    gap: 22px !important;
-    margin-top: 22px !important;
-  }
-
-  .deskCard .deskPills .pill{
-    flex:1 !important;
-    height: 56px !important;
-    border-radius: 999px !important;
-    background: #e8e8e8 !important;
-    color: var(--green) !important;
-    border: 0 !important;
-    font-weight: 800 !important;
-    box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
-  }
-}
-/* =========================================
-   DESKTOP MOCKUP (STRUCTURE-BASED, NO CLASS GUESSING)
-   ========================================= */
-@media (min-width: 900px){
-
-  /* The whole card */
-  .deskFrame{
-    display:grid !important;
-    grid-template-columns: 1fr 1.15fr !important;
-    align-items:stretch !important;
-    background:#d6d6d6 !important;   /* mock gray */
-    border-radius:24px !important;
-    overflow:hidden !important;
-    height: clamp(520px, 62vh, 660px) !important;
-  }
-
-  /* RIGHT SIDE: name on top, green section pinned to bottom */
-  .deskInfo{
-    display:flex !important;
-    flex-direction:column !important;
-    padding:44px 48px !important;
-    background:#d6d6d6 !important;
-    gap:16px !important;
-  }
-
-  /* GREEN SECTION = whatever the last child is */
-  .deskInfo > :last-child{
-    margin-top:auto !important;
-    background: var(--green) !important;
-    border-radius:18px !important;
-    padding:34px 36px 28px !important;
-    min-height:56% !important; /* slightly above halfway */
-    display:flex !important;
-    flex-direction:column !important;
-    justify-content:space-between !important;
-  }
-
-  /* BUTTONS: soft shadow like mock */
-  .deskPills{
-    display:flex !important;
-    gap:22px !important;
-    margin-top:22px !important;
-  }
-
-  .deskPills .pill{
-    flex:1 !important;
-    height:56px !important;
-    border-radius:999px !important;
-    background:#e8e8e8 !important;
-    color: var(--green) !important;
-    border:0 !important;
-    font-weight:800 !important;
-    box-shadow:0 14px 28px rgba(0,0,0,.18) !important;
-  }
-
-  /* LEFT SIDE: photo with a visible gray frame */
-  .deskPhoto{
-    background:#d6d6d6 !important;
-    padding:44px 40px 44px 48px !important; /* creates the frame */
-    display:flex !important;
-    align-items:stretch !important;
-  }
-
-  .deskPhoto img{
-    width:100% !important;
-    height:100% !important;
-    object-fit:cover !important;
-    border-radius:18px !important;
-    box-shadow:0 18px 40px rgba(0,0,0,.22) !important;
-    filter:none !important; /* make sure grayscale test is gone */
-  }
-}
-/* ===== DESKTOP: FULL-WIDTH GREEN BOTTOM (like mockup) ===== */
-@media (min-width: 900px){
-
-  /* Make the card a positioning context */
-  .deskFrame{
-    position: relative !important;
-    overflow: hidden !important;
-  }
-
-
-  /* Put everything above the green "floor" */
-  .deskPhoto,
-  .deskInfo{
-    position: relative !important;
-    z-index: 1 !important;
-  }
-
-
-  /* Keep buttons looking like they sit on top (soft shadows) */
-  .deskPills .pill{
-    box-shadow:0 14px 28px rgba(0,0,0,.18) !important;
-  }
-}
-/* ===== DESKTOP: FULL-WIDTH GREEN BOTTOM (MOCKUP FLOOR) ===== */
-@media (min-width: 900px){
-
-  /* Make sure the card area is the positioning container */
-  .deskCard .deskFrame{
-    position:relative !important;
-    overflow:hidden !important;
-  }
-
-  /* Green floor: use TOP+BOTTOM so it always shows, no % height weirdness */
-  .deskCard .deskFrame::before{
-    content:"" !important;
-    position:absolute !important;
-    left:0 !important;
-    right:0 !important;
-    top:44% !important;   /* seam line (adjust 42–48% to taste) */
-    bottom:0 !important;
-    background: var(--green) !important;
-    z-index:0 !important;
-    pointer-events:none !important;
-  }
-
-  /* Put photo + info above the floor */
-  .deskCard .deskPhoto,
-  .deskCard .deskInfo{
-    position:relative !important;
-    z-index:1 !important;
-  }
-
-  /* Remove the "boxed" green panel look on the right (let floor be the green) */
-  .deskCard .deskGreenPanel{
+  /* IMPORTANT: remove the “boxed green panel” look — floor is the green */
+  .deskGreenPanel{
     background: transparent !important;
     border-radius:0 !important;
     box-shadow:none !important;
-    padding: 34px 36px 28px !important;
+    padding:26px 28px 30px;
+  }
+
+  /* Buttons should look like they sit on the green floor */
+  .deskPills .pill{
+    background:#e8e8e8;
+    color:var(--green2);
+    box-shadow:0 14px 28px rgba(0,0,0,.18);
   }
 }

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Highlight Digital Contact</title>
+
+  <link rel="icon" href="./assets/header.png" />
+  <link rel="stylesheet" href="./styles.css?v=51" />
+  <meta name="theme-color" content="#3F845B" />
+</head>
+
+<body>
+  <!-- Desktop header -->
+  <header class="deskHeader" aria-label="Highlight Industries header">
+    <img src="./assets/header.png" alt="Highlight Industries, Inc." />
+  </header>
+
+  <!-- Mobile header -->
+  <header class="mobHeader" aria-label="Highlight Industries mobile header">
+    <img src="./assets/mobile-logo.png" alt="Highlight Industries, Inc." />
+  </header>
+
+  <main class="app" id="app">
+    <!-- Top controls (desktop-first; collapses on mobile) -->
+    <section class="topControls">
+      <div class="searchWrap">
+        <label class="srOnly" for="employeeSearch">Find an employee</label>
+        <input id="employeeSearch" type="search" inputmode="search" autocomplete="off"
+               placeholder="Search employees…" />
+        <button class="btn ghost" id="openSearch" type="button" title="Browse employees">
+          Browse
+        </button>
+
+        <div class="searchDropdown" id="searchDropdown" role="listbox" aria-label="Employee results"></div>
+      </div>
+</section>
+
+    <!-- Desktop card -->
+    <section class="deskCard" aria-label="Desktop contact card">
+      <div class="deskFrame">
+        <div class="deskPhoto">
+          <img id="deskPhoto" src="./assets/building.jpg" alt="Employee photo" />
+        </div>
+
+        <div class="deskInfo">
+          <div class="deskName">
+            <div class="nameRow">
+              <span class="first" id="deskFirst">—</span>
+              <span class="last" id="deskLast">—</span>
+            </div>
+            <div class="role" id="deskRole">—</div>
+          </div>
+
+          <div class="deskGreenPanel">
+            <div class="kv">
+              <div class="k">CALL</div><div class="v" id="deskPhone">—</div>
+              <div class="k">EMAIL</div><div class="v"><a id="deskEmail" href="#">—</a></div>
+              <div class="k">WEBSITE</div><div class="v"><a id="deskWebsite" href="#" target="_blank" rel="noopener">—</a></div>
+              <div class="k optional" id="deskPartsLabel"></div><div class="v optional"><a id="deskParts" href="#" target="_blank" rel="noopener"></a></div>
+            </div>
+
+            <div class="deskPills">
+              <button class="pill" id="deskPillSave" type="button">Save to Contacts</button>
+              <button class="pill" id="deskPillShare" type="button">Share</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile card -->
+    <section class="mobCard" aria-label="Mobile contact card">
+      <div class="mobTopCard">
+        <div class="mobImage">
+          <img id="mobPhoto" src="./assets/building.jpg" alt="Employee photo" />
+        </div>
+
+        <div class="mobTitle">
+          <div class="mobName">
+            <span class="first" id="mobFirst">—</span><br/>
+            <span class="last" id="mobLast">—</span>
+          </div>
+          <div class="mobDivider"></div>
+          <div class="mobRole" id="mobRole">—</div>
+        </div>
+      </div>
+
+      <div class="mobIconBar" aria-label="Quick contact buttons">
+        <button class="iconCircle" id="mobCall" type="button" title="Call">
+          <span class="srOnly">Call</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.5 3 3.7 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.6.6 3.9.6.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C11 22 2 13 2 2c0-.6.4-1 1-1h4.1c.6 0 1 .4 1 1 0 1.3.2 2.7.6 3.9.1.4 0 .8-.3 1.1L6.6 10.8z"/></svg>
+        </button>
+        <button class="iconCircle" id="mobEmail" type="button" title="Email">
+          <span class="srOnly">Email</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5L4 8V6l8 5 8-5v2z"/></svg>
+        </button>
+        <button class="iconCircle" id="mobWeb" type="button" title="Website">
+          <span class="srOnly">Website</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm6.9 9h-3.1c-.1-2-.6-3.8-1.3-5 2.2.9 3.8 2.8 4.4 5zM12 4.1c.9 1.2 1.6 3.2 1.7 5.9h-3.4c.1-2.7.8-4.7 1.7-5.9zM4.1 13h3.1c.1 2 .6 3.8 1.3 5-2.2-.9-3.8-2.8-4.4-5zM7.2 11H4.1c.6-2.2 2.2-4.1 4.4-5-.7 1.2-1.2 3-1.3 5zm2.1 2h5.4c-.1 3-.9 5.2-2.7 6.9-1.8-1.7-2.6-3.9-2.7-6.9zm5.5 5c.7-1.2 1.2-3 1.3-5h3.1c-.6 2.2-2.2 4.1-4.4 5z"/></svg>
+        </button>
+      </div>
+
+      <div class="mobInfoCard" aria-label="Contact details">
+        <div class="infoBlock">
+          <div class="label">Call</div>
+          <a class="value" id="mobPhone" href="#">—</a>
+        </div>
+        <div class="infoBlock">
+          <div class="label">Email</div>
+          <a class="value" id="mobEmailLink" href="#">—</a>
+        </div>
+        <div class="infoBlock">
+          <div class="label">Website</div>
+          <a class="value" id="mobWebsite" href="#" target="_blank" rel="noopener">—</a>
+        </div>
+        <div class="infoBlock optional" id="mobPartsWrap">
+          <div class="label" id="mobPartsLabel">Machine Parts</div>
+          <a class="value" id="mobParts" href="#" target="_blank" rel="noopener"></a>
+        </div>
+
+        <div class="mobBottomActions" aria-label="Bottom action buttons">
+          <button class="round" id="btnQR" type="button" title="QR">
+            <span class="srOnly">QR</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zM13 3h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zM13 13h3v3h-3v-3zm0 5h3v3h-3v-3zm5-5h3v8h-8v-3h2v1h4v-4h-1v2h-2v-4h2v1z"/></svg>
+          </button>
+          <button class="round" id="btnShare" type="button" title="Share">
+            <span class="srOnly">Share</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.1c.1-.3.1-.5.1-.8s0-.5-.1-.8l7.1-4.1c.5.5 1.2.8 2 .8 1.6 0 2.9-1.3 2.9-2.9S19.6 1.1 18 1.1 15.1 2.4 15.1 4c0 .3 0 .6.1.8L8.1 8.9c-.5-.5-1.2-.8-2-.8-1.6 0-2.9 1.3-2.9 2.9s1.3 2.9 2.9 2.9c.8 0 1.5-.3 2-.8l7.1 4.1c-.1.2-.1.5-.1.7 0 1.6 1.3 2.9 2.9 2.9s2.9-1.3 2.9-2.9-1.3-2.8-2.9-2.8z"/></svg>
+          </button>
+          <button class="round" id="btnFind" type="button" title="Find">
+            <span class="srOnly">Find</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 2a8 8 0 105.3 14l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/></svg>
+          </button>
+          <button class="round solid" id="btnAdd" type="button" title="Add to Contacts">
+            <span class="srOnly">Add to Contacts</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm-9 8v-1c0-2.8 5.3-4.3 9-4.3 1 0 2 .1 3 .3V17h2v2h2v2h-2v2h-2v-2h-2v-2.5c-.3 0-.7-.1-1-.1-3.6 0-7 1.3-7 2.6v1H6z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal: QR / Find / Share fallback -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-label="Dialog">
+    <div class="modalBackdrop" data-close="1"></div>
+    <div class="modalPanel" role="document">
+      <div class="modalTop">
+        <div class="modalTitle" id="modalTitle">—</div>
+        <button class="modalClose" type="button" data-close="1" aria-label="Close dialog">✕</button>
+      </div>
+      <div class="modalBody" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- QR library (CDN). If offline, we fall back to a simple QR image from an API. -->
+  <script defer src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+  <!-- Fallback employee CSV (used if fetch is blocked) -->
+  <script id="employeesFallback" type="text/plain">
+first,last,title,phone,ext,email,website,photo,parts_label,parts_url,slug
+Taryne,Swayze,Packaging Engineer,616-531-2464,242,taryns@highlightindustries.com,https://www.highlightindustries.com,,Machine Parts,https://www.highlightindustries.net,taryne-swayze
+Jessica,Flanders,E‑commerce & Inventory Administrator,616-531-2464,000,jessica@highlightindustries.com,https://www.highlightindustries.com,./assets/headshots/jessica.png,Machine Parts,https://www.highlightindustries.net,jessica-flanders
+</script>
+  <script defer src="./app.js?v=51"></script>
+</body>
+</html>

@@ -444,3 +444,97 @@ a{color:inherit}
   height:34px !important;
   fill:#fff !important;
 }
+/* =========================================
+   DESKTOP MOCKUP POLISH (DESKTOP ONLY)
+   ========================================= */
+@media (min-width: 900px){
+
+  /* Make the desktop card feel like the mock (fixed height + clean split) */
+  .deskFrame{
+    display:grid;
+    grid-template-columns: 1.02fr 1.18fr;
+    align-items:stretch;
+    overflow:hidden;
+    background:#d6d6d6; /* top/outer light gray like mock */
+  }
+
+  /* Right side layout: name area on top, green section on bottom */
+  .deskInfo{
+    display:grid;
+    grid-template-rows: auto 1fr;  /* name block + green panel block */
+    padding: 44px 48px 44px 48px;
+    background:#d6d6d6;
+  }
+
+  /* Name block spacing like mock */
+  .deskName{
+    padding-bottom: 18px;
+  }
+  .deskName .nameRow{
+    line-height: 0.95;
+  }
+
+  /* GREEN SECTION: “whole bottom”, a little higher than halfway */
+  .deskGreenPanel{
+    margin-top: 8px;
+    background: var(--green);
+    border-radius: 18px;
+    padding: 34px 36px 28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    /* height control: push it slightly above half */
+    min-height: 56%;
+  }
+
+  /* Make the KV list feel like the mock */
+  .deskGreenPanel .kv{
+    gap: 10px 18px;
+  }
+
+  /* Buttons live inside green and float a bit with shadow */
+  .deskPills{
+    margin-top: 20px;
+    display:flex;
+    gap: 22px;
+  }
+  .deskPills .pill{
+    flex: 1;
+    height: 56px;
+    border-radius: 999px;
+    background: #e8e8e8;
+    color: var(--green);
+    font-weight: 700;
+    box-shadow: 0 14px 28px rgba(0,0,0,.18);
+    border: 0;
+  }
+
+  /* PHOTO: framed in the same gray, and aligned to name + buttons */
+  .deskPhoto{
+    background:#d6d6d6;            /* frame color = top gray */
+    padding: 44px 40px 44px 48px;  /* match right padding vibe */
+    display:flex;
+    align-items:stretch;
+  }
+
+  /* The photo itself should ONLY span from name top to buttons bottom:
+     we achieve this by matching the right side’s vertical rhythm */
+  .deskPhoto img{
+    width: 100%;
+    height: 100%;
+    max-height: 540px;          /* keeps it from getting gigantic on tall screens */
+    object-fit: cover;
+    border-radius: 16px;
+    display:block;
+    box-shadow: 0 18px 40px rgba(0,0,0,.22);
+  }
+
+  /* Optional: soften the center seam like mock */
+  .deskFrame::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+  }
+}

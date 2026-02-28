@@ -541,5 +541,81 @@ a{color:inherit}
 @media (min-width: 900px){
   .deskFrame{ position: relative; }
 }
-/* DEBUG: if you see a neon border, CSS is updating */
-.deskCard { outline: 10px solid hotpink !important; }
+/* =========================================
+   DESKTOP MOCKUP OVERRIDE (force it)
+   ========================================= */
+@media (min-width: 900px){
+
+  /* overall card proportions */
+  .deskCard .deskFrame{
+    display:grid !important;
+    grid-template-columns: 1.02fr 1.18fr !important;
+    align-items:stretch !important;
+    background:#d6d6d6 !important;   /* same light gray as mock */
+    overflow:hidden !important;
+    border-radius: 24px !important;
+    height: clamp(520px, 62vh, 660px) !important; /* keeps it mock-like */
+  }
+
+  /* LEFT photo side = framed */
+  .deskCard .deskPhoto{
+    background:#d6d6d6 !important;
+    padding: 44px 40px 44px 48px !important;
+    display:flex !important;
+    align-items:stretch !important;
+  }
+
+  .deskCard .deskPhoto img{
+    width:100% !important;
+    height:100% !important;      /* key: image fills the framed area */
+    object-fit:cover !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 40px rgba(0,0,0,.22) !important; /* subtle shadow */
+  }
+
+  /* RIGHT info side = name top, green bottom */
+  .deskCard .deskInfo{
+    background:#d6d6d6 !important;
+    padding: 44px 48px 44px 48px !important;
+    display:grid !important;
+    grid-template-rows: auto 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* name block spacing like mock */
+  .deskCard .deskName{
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* GREEN section: whole bottom & slightly above halfway */
+  .deskCard .deskGreenPanel{
+    background: var(--green) !important;
+    border-radius: 18px !important;
+    padding: 34px 36px 28px !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:space-between !important;
+
+    min-height: 56% !important;  /* “a little higher than half way” */
+  }
+
+  /* buttons inside green, with soft shadow */
+  .deskCard .deskPills{
+    display:flex !important;
+    gap: 22px !important;
+    margin-top: 22px !important;
+  }
+
+  .deskCard .deskPills .pill{
+    flex:1 !important;
+    height: 56px !important;
+    border-radius: 999px !important;
+    background: #e8e8e8 !important;
+    color: var(--green) !important;
+    border: 0 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
+  }
+}

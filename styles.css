@@ -623,3 +623,30 @@ a{color:inherit}
     box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
   }
 }
+/* ===== DESKTOP: final polish (name down + framed photo smaller) ===== */
+@media (min-width: 900px){
+
+  /* 1️⃣ Move name + role slightly lower */
+  .deskName{
+    margin-top: 24px !important;   /* adjust 18–40px if needed */
+  }
+
+  /* 2️⃣ Photo side: create visible gray frame */
+  .deskPhoto{
+    background:#d6d6d6 !important;   /* same as top section */
+    padding: 64px 52px 64px 64px !important;  /* thicker frame */
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+  }
+
+  /* 3️⃣ Make the image slightly smaller inside the frame */
+  .deskPhoto img{
+    width: 88% !important;      /* shrink image */
+    height: auto !important;
+    max-height: 88% !important;
+    object-fit: cover !important;
+    border-radius: 18px !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,.25) !important;
+  }
+}

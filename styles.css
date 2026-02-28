@@ -545,3 +545,52 @@ a{color:inherit}
   height:22px;
   fill:#fff;
 }
+/* ===============================
+   FORCE MOBILE BOTTOM ACTIONS (wins)
+   =============================== */
+
+/* Bigger icons inside the 3 circle buttons */
+#btnQR, #btnShare, #btnFind{
+  width:78px !important;
+  height:78px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  background: var(--green) !important;
+  border:none !important;
+  box-shadow:0 14px 28px rgba(0,0,0,.15) !important;
+  color:#fff !important; /* makes SVG fill via currentColor */
+}
+
+#btnQR svg, #btnShare svg, #btnFind svg{
+  width:38px !important;
+  height:38px !important;
+  fill: currentColor !important;
+  display:block !important;
+}
+
+/* Add to Contacts = pill */
+#btnAdd.pillAction{
+  height:78px !important;
+  padding:0 22px !important;
+  border-radius:999px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:10px !important;
+  background: var(--green) !important;
+  border:none !important;
+  box-shadow:0 14px 28px rgba(0,0,0,.15) !important;
+  color:#fff !important;
+  font-weight:700 !important;
+  font-size:14px !important;
+  white-space:nowrap !important;
+}
+
+#btnAdd.pillAction svg{
+  width:24px !important;
+  height:24px !important;
+  fill: currentColor !important;
+  display:block !important;
+}

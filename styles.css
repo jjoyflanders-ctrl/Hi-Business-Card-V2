@@ -541,3 +541,5 @@ a{color:inherit}
 @media (min-width: 900px){
   .deskFrame{ position: relative; }
 }
+/* DEBUG: if you see a neon border, CSS is updating */
+.deskCard { outline: 10px solid hotpink !important; }

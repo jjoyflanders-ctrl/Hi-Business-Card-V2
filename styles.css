@@ -418,22 +418,22 @@ a{color:inherit}
   object-position:center;
   display:block;
 }
-/* =========================================
-   MOBILE CLEANUP FIXES (v53)
-   ========================================= */
 
-/* Make photo match title height */
+/* ===============================
+   MOBILE IMAGE FINAL FIX
+   =============================== */
+
 .mobTopCard{
   display:grid;
-  grid-template-columns:150px 1fr;
+  grid-template-columns:140px 1fr;
   gap:18px;
-  align-items:stretch;
+  align-items:start; /* IMPORTANT: no stretching */
 }
 
 .mobImage{
-  width:150px;
-  height:100%;
-  border-radius:12px;
+  width:140px;
+  height:180px;   /* fixed height so it never grows */
+  border-radius:14px;
   overflow:hidden;
   background:#d0d0d0;
   box-shadow:0 14px 30px rgba(0,0,0,.18);
@@ -443,10 +443,9 @@ a{color:inherit}
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center;
+  object-position:center top; /* better head positioning */
   display:block;
 }
-
 /* Bottom buttons consistent */
 .mobBottomActions .round{
   width:70px;

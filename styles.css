@@ -584,3 +584,7 @@ a{color:inherit}
     margin-top: 6px !important;
   }
 }
+/* TEST — if you see a thick purple border, the CSS is updating */
+@media (min-width: 900px){
+  .deskFrame{ outline: 12px solid rebeccapurple !important; }
+}

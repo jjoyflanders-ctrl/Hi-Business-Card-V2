@@ -463,3 +463,17 @@ a{color:inherit}
   height:30px;
   fill:#fff;
 }
+/* ===============================
+   MOBILE HEADER LOGO SIZE
+   =============================== */
+
+.mobHeader{
+  padding-top:20px;
+  padding-bottom:12px;
+}
+
+.mobHeader img{
+  height:70px;      /* increase from current size */
+  max-height:80px;  /* safety cap */
+  width:auto;
+}

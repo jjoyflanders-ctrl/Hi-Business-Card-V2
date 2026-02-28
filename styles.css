@@ -619,3 +619,9 @@ a{color:inherit}
     box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
   }
 }
+/* ===== SELECTOR SMOKE TEST ===== */
+@media (min-width: 900px){
+  .deskGreenPanel{ background: lime !important; }
+  .deskPhoto{ background: cyan !important; }
+  .deskPhoto img{ filter: grayscale(100%) !important; }
+}

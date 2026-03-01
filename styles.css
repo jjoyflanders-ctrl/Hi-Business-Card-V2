@@ -492,3 +492,98 @@ a{color:inherit}
   .deskCard{display:none}
   .mobCard{display:block}
 }
+/* ===== FINAL DESKTOP POLISH (paste at VERY bottom) ===== */
+@media (min-width: 900px){
+
+  /* keep your full-width green floor */
+  .deskFrame{
+    position:relative !important;
+    background:#d6d6d6 !important;
+    overflow:hidden !important;
+    border-radius:24px !important;
+  }
+  .deskFrame::after{
+    content:"" !important;
+    position:absolute !important;
+    left:0 !important; right:0 !important;
+    top:44% !important;       /* seam height */
+    bottom:0 !important;
+    background: var(--green) !important;
+    z-index:0 !important;
+    pointer-events:none !important;
+  }
+  .deskPhoto,
+  .deskInfo{
+    position:relative !important;
+    z-index:1 !important;
+    background:transparent !important;
+  }
+
+  /* ---------- PHOTO: smaller + framed + shows green left/bottom ---------- */
+
+  /* stop centering vertically (this is what was pushing the photo into the green) */
+  .deskPhoto{
+    align-items:flex-start !important;
+    justify-content:flex-start !important;
+
+    /* frame color matches top gray */
+    background:#d6d6d6 !important;
+
+    /* create visible gray frame + inset from the left edge */
+    padding:28px 24px 70px 34px !important;
+
+    /* important: allow some of the green floor to show on the LEFT (bottom area) */
+    /* (inset the frame slightly from the column edge) */
+  }
+
+  /* the image itself smaller so bottom green shows */
+  .deskPhoto img{
+    width:100% !important;
+    max-width:360px !important;     /* smaller image */
+    max-height:420px !important;    /* prevents it from dropping into the green */
+    height:auto !important;
+
+    border-radius:18px !important;
+    object-fit:cover !important;
+    object-position:center !important;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.22) !important;
+    filter:none !important;
+  }
+
+  /* ---------- ALIGNMENT: name/title + details share the same left edge ---------- */
+
+  /* give the right column a consistent left padding */
+  .deskInfo{
+    padding:56px 56px 56px 56px !important;
+    gap:18px !important;
+  }
+
+  /* nudge name/title slightly lower */
+  .deskName{
+    margin-top:18px !important;
+  }
+
+  /* remove extra left padding INSIDE the green panel so it lines up with the name */
+  .deskGreenPanel{
+    background:transparent !important;
+    box-shadow:none !important;
+    border-radius:0 !important;
+
+    margin-top:auto !important;
+    padding:26px 0 20px !important;   /* <-- no left/right padding = aligns with name */
+    min-height:260px !important;
+  }
+
+  /* keep the kv grid readable and aligned */
+  .kv{
+    grid-template-columns: 140px 1fr !important;
+    column-gap:16px !important;
+  }
+
+  /* move the buttons down a touch */
+  .deskPills{
+    margin-top:28px !important;
+    gap:22px !important;
+  }
+}

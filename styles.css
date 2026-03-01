@@ -487,3 +487,24 @@ a{color:inherit}
     object-position: center !important;
   }
 }
+/* ===== DESKTOP TWEAKS: more green under photo + details fully in green ===== */
+@media (min-width: 900px){
+
+  /* 1) Move the green/gray seam DOWN a bit (more green under the photo) */
+  .deskFrame::after{
+    top: 48% !important;   /* was ~44%; try 46–52% if you want more/less green */
+  }
+
+  /* 2) Force the contact details block to start inside the green area */
+  .deskGreenPanel{
+    padding-top: 34px !important;
+    margin-top: 8px !important;     /* keeps it from creeping into gray */
+  }
+
+  /* 3) Make the photo a bit LESS tall so green shows under it */
+  .deskPhoto img{
+    height: clamp(300px, 32vw, 440px) !important;  /* shorter than before */
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+}

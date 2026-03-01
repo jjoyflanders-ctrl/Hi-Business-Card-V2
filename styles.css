@@ -169,11 +169,16 @@ a{color:inherit}
 /* LEFT side: framed photo */
 .deskPhoto{
   display:flex;
-  align-items:center;      /* keeps photo from dropping to bottom */
+  align-items:center;
   justify-content:center;
 
-  /* frame thickness (gray like the top) */
-  padding:60px 52px 60px 64px;
+  /* This creates the visible frame */
+  background:#d6d6d6;  /* SAME gray as top */
+
+  padding:40px;        /* frame thickness */
+
+  position:relative;
+  z-index:1;
 }
 
 /* Photo itself: slightly smaller inside frame */

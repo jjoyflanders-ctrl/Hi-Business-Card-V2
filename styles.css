@@ -475,21 +475,13 @@ a{color:inherit}
 }
 
 /* =========================================
-   DESKTOP MOCKUP FLOOR (FULL WIDTH, RELIABLE)
-   Uses a background gradient (no ::before bugs)
+   CLEAN DESKTOP SYSTEM (FINAL)
    ========================================= */
 @media (min-width: 900px){
 
-  /* Whole card: gray top / green bottom across FULL width (under photo too) */
+  /* Entire card */
   .deskFrame{
-    background: linear-gradient(
-      to bottom,
-      #d6d6d6 0%,
-      #d6d6d6 44%,
-      var(--green) 44%,
-      var(--green) 100%
-    ) !important;
-
+    background:#d6d6d6;
     border-radius:24px;
     overflow:hidden;
     box-shadow:var(--shadow);
@@ -497,309 +489,64 @@ a{color:inherit}
     display:grid;
     grid-template-columns: 44% 56%;
     align-items:stretch;
+    height: clamp(520px, 62vh, 660px);
   }
 
-  /* Left side “frame” same gray as mock */
+  /* Left side photo frame */
   .deskPhoto{
-    background: transparent !important; /* gradient handles the background */
+    background:#d6d6d6;   /* same as top */
+    padding:64px 52px 64px 64px; /* frame thickness */
     display:flex;
-    align-items:stretch;
+    align-items:center;
     justify-content:center;
-    padding:56px 28px;
-    overflow:hidden;
   }
 
-  /* Photo: keep color, no grayscale, nice shadow */
   .deskPhoto img{
-    filter:none !important;
-    width:100%;
-    max-width:420px;
-    height:100%;
-    border-radius:16px;
-    box-shadow:0 18px 40px rgba(0,0,0,.22);
+    width:88%;
+    height:auto;
+    border-radius:18px;
     object-fit:cover;
-    object-position:center;
-    background:transparent;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
   }
 
-  /* Right side */
+  /* Right side layout */
   .deskInfo{
-    background: transparent !important; /* gradient is the background */
-    padding:56px 46px;
+    background:#d6d6d6;
+    padding:64px 56px;
     display:flex;
     flex-direction:column;
-    gap:28px;
+    justify-content:flex-start;
+    gap:24px;
   }
 
-  /* IMPORTANT: remove the “boxed green panel” look — floor is the green */
+  /* Move name slightly lower */
+  .deskName{
+    margin-top:16px;
+  }
+
+  /* Green bottom section */
   .deskGreenPanel{
-    background: transparent !important;
-    border-radius:0 !important;
-    box-shadow:none !important;
-    padding:26px 28px 30px;
+    margin-top:auto;           /* pushes it to bottom */
+    background:var(--green);
+    border-radius:18px;
+    padding:34px 36px 30px;
+    box-shadow:0 18px 35px rgba(0,0,0,.15);
   }
 
-  /* Buttons should look like they sit on the green floor */
+  /* Buttons */
+  .deskPills{
+    margin-top:24px;
+    display:flex;
+    gap:22px;
+  }
+
   .deskPills .pill{
+    flex:1;
+    height:56px;
+    border-radius:999px;
     background:#e8e8e8;
     color:var(--green2);
+    font-weight:800;
     box-shadow:0 14px 28px rgba(0,0,0,.18);
-  }
-}
-/* ===== DESKTOP: push contact details into the green floor ===== */
-@media (min-width: 900px){
-
-  /* Make the right side a 2-row grid: top = name/role, bottom = green content */
-  .deskInfo{
-    display:grid !important;
-    grid-template-rows: auto 1fr !important;
-    gap: 10px !important;
-  }
-
-  /* Put the green panel (which holds .kv + buttons) in the bottom row */
-  .deskGreenPanel{
-    grid-row: 2 !important;
-    align-self: stretch !important;
-    margin-top: 0 !important;
-
-    /* sit comfortably in the green floor */
-    padding-top: 34px !important;
-  }
-
-  /* Pull the name/role slightly up (keeps it in the gray) */
-  .deskName{
-    grid-row: 1 !important;
-    align-self: start !important;
-  }
-
-  /* Make sure the kv text is readable on green */
-  .deskGreenPanel .k,
-  .deskGreenPanel .v,
-  .deskGreenPanel .v a{
-    color: #0b0b0b !important;
-  }
-
-  /* Optional: nudge the kv block down a touch so it’s clearly in green */
-  .deskGreenPanel .kv{
-    margin-top: 6px !important;
-  }
-}
-/* ===== DESKTOP: force details into the green floor area ===== */
-@media (min-width: 900px){
-
-  /* keep your green floor */
-  .deskCard .deskFrame::before{
-    top: 42% !important;          /* raise/lower seam (try 40–46%) */
-    background: var(--green) !important;
-  }
-
-  /* make sure content sits above the floor */
-  .deskCard .deskPhoto,
-  .deskCard .deskInfo{
-    position: relative !important;
-    z-index: 1 !important;
-  }
-
-  /* IMPORTANT: stop "transparent panel" from floating too high */
-  .deskCard .deskGreenPanel{
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-
-    /* This is the key: push details DOWN into green */
-    margin-top: clamp(60px, 8vh, 120px) !important;
-    padding: 28px 36px 28px !important;
-  }
-
-  /* make the kv block readable on green */
-  .deskCard .deskGreenPanel .k,
-  .deskCard .deskGreenPanel .v,
-  .deskCard .deskGreenPanel .v a{
-    color: #0b0b0b !important;
-  }
-
-  /* keep pills inside green with shadow */
-  .deskCard .deskPills .pill{
-    box-shadow: 0 14px 28px rgba(0,0,0,.18) !important;
-  }
-}
-/* ===== DESKTOP: final polish (name down + framed photo smaller) ===== */
-@media (min-width: 900px){
-
-  /* 1️⃣ Move name + role slightly lower */
-  .deskName{
-    margin-top: 24px !important;   /* adjust 18–40px if needed */
-  }
-
-  /* 2️⃣ Photo side: create visible gray frame */
-  .deskPhoto{
-    background:#d6d6d6 !important;   /* same as top section */
-    padding: 64px 52px 64px 64px !important;  /* thicker frame */
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-  }
-
-  /* 3️⃣ Make the image slightly smaller inside the frame */
-  .deskPhoto img{
-    width: 88% !important;      /* shrink image */
-    height: auto !important;
-    max-height: 88% !important;
-    object-fit: cover !important;
-    border-radius: 18px !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,.25) !important;
-  }
-}
-/* ===== DESKTOP: FULL-WIDTH GREEN FLOOR + BUTTONS DOWN + PHOTO FRAME ===== */
-@media (min-width: 900px){
-
-  /* 1) Full-width green floor (same height you have now) */
-  .deskFrame{
-    position: relative !important;
-    overflow: hidden !important;
-    background: #d6d6d6 !important; /* top gray */
-  }
-
-  /* green spans under photo + info */
-  .deskFrame::before{
-    content:"" !important;
-    position:absolute !important;
-    left:0 !important;
-    right:0 !important;
-    top: 44% !important;     /* <-- keep this seam height (adjust 42–48 if needed) */
-    bottom:0 !important;
-    background: var(--green) !important;
-    z-index:0 !important;
-    pointer-events:none !important;
-  }
-
-  /* keep content above the green floor */
-  .deskPhoto,
-  .deskInfo{
-    position: relative !important;
-    z-index: 1 !important;
-    background: transparent !important;
-  }
-
-  /* 2) Remove the “boxed” green panel look (so the floor is the green) */
-  .deskGreenPanel{
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* 3) Nudge pills DOWN a bit */
-  .deskPills{
-    margin-top: 28px !important;   /* increase/decrease as you like */
-  }
-
-  /* 4) Ensure photo has a gray frame like the top */
-  .deskPhoto{
-    background:#d6d6d6 !important;
-    padding: 64px 52px 64px 64px !important; /* frame thickness */
-  }
-  .deskPhoto img{
-    width: 88% !important;
-    height: auto !important;
-    object-fit: cover !important;
-    border-radius: 18px !important;
-    box-shadow: 0 20px 40px rgba(0,0,0,.25) !important;
-  }
-}/* ===== DESKTOP: FORCE FULL-WIDTH GREEN FLOOR (wins cascade) ===== */
-@media (min-width: 900px){
-
-  /* Make the card the stacking context */
-  .deskCard .deskFrame{
-    position: relative !important;
-    overflow: hidden !important;
-    background: #d6d6d6 !important; /* top gray */
-  }
-
-  /* The green "floor" */
-  .deskCard .deskFrame::before{
-    content: "" !important;
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 44% !important;          /* seam height */
-    bottom: 0 !important;
-    background: #3F845B !important; /* FORCE green */
-    z-index: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* Everything sits above the floor */
-  .deskCard .deskPhoto,
-  .deskCard .deskInfo{
-    position: relative !important;
-    z-index: 1 !important;
-    background: transparent !important; /* IMPORTANT so green shows under both */
-  }
-
-  /* Remove any inner green panel background so the floor is the green */
-  .deskCard .deskGreenPanel{
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* Keep your photo "frame" gray */
-  .deskCard .deskPhoto{
-    background: #d6d6d6 !important;
-    padding: 64px 52px 64px 64px !important;
-  }
-
-  /* Nudge pills down (keep this since it worked) */
-  .deskCard .deskPills{
-    margin-top: 28px !important;
-  }
-}
-/* ===== DESKTOP: FORCE FULL-WIDTH GREEN FLOOR (wins cascade) ===== */
-@media (min-width: 900px){
-
-  /* Make the card the stacking context */
-  .deskCard .deskFrame{
-    position: relative !important;
-    overflow: hidden !important;
-    background: #d6d6d6 !important; /* top gray */
-  }
-
-  /* The green "floor" */
-  .deskCard .deskFrame::before{
-    content: "" !important;
-    position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 44% !important;          /* seam height */
-    bottom: 0 !important;
-    background: #3F845B !important; /* FORCE green */
-    z-index: 0 !important;
-    pointer-events: none !important;
-  }
-
-  /* Everything sits above the floor */
-  .deskCard .deskPhoto,
-  .deskCard .deskInfo{
-    position: relative !important;
-    z-index: 1 !important;
-    background: transparent !important; /* IMPORTANT so green shows under both */
-  }
-
-  /* Remove any inner green panel background so the floor is the green */
-  .deskCard .deskGreenPanel{
-    background: transparent !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* Keep your photo "frame" gray */
-  .deskCard .deskPhoto{
-    background: #d6d6d6 !important;
-    padding: 64px 52px 64px 64px !important;
-  }
-
-  /* Nudge pills down (keep this since it worked) */
-  .deskCard .deskPills{
-    margin-top: 28px !important;
   }
 }

@@ -1,15 +1,12 @@
-/* Highlight Digital Contact – CLEAN (Desktop + Mobile) */
+/* Highlight Digital Contact – CLEAN v5 (Desktop + Mobile) */
 :root{
   --green:#3F845B;
   --green2:#2f6b49;
-  --dark:#151515;
-  --panel:#d9d9d9;
-  --card:#ffffff;
   --ink:#111;
-  --muted:#6a6a6a;
   --radius:18px;
   --shadow:0 18px 45px rgba(0,0,0,.25);
   --shadow2:0 10px 25px rgba(0,0,0,.22);
+  --topGray:#d6d6d6;
   --font: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
 }
 
@@ -33,10 +30,7 @@ a{color:inherit}
 }
 
 /* Headers */
-.deskHeader{
-  width:100%;
-  background:#111;
-}
+.deskHeader{width:100%; background:#111;}
 .deskHeader img{
   width:100%;
   display:block;
@@ -123,8 +117,6 @@ a{color:inherit}
 }
 .btn:hover{filter:brightness(1.06)}
 .btn.ghost{background:transparent}
-.btn.primary{background:var(--green); border-color:transparent}
-.btn.secondary{background:#2a2a2a}
 
 /* =========================
    DESKTOP (mockup style)
@@ -132,7 +124,6 @@ a{color:inherit}
 .deskCard{display:block}
 
 .deskFrame{
-  /* card container */
   border-radius:24px;
   box-shadow:var(--shadow);
   overflow:hidden;
@@ -142,83 +133,80 @@ a{color:inherit}
   grid-template-columns: 44% 56%;
   align-items:stretch;
 
-  /* Top gray base */
-  background:#d6d6d6;
+  /* top area base */
+  background:var(--topGray);
 }
 
-/* FULL-WIDTH GREEN FLOOR under everything */
+/* Full-width green floor */
 .deskFrame::after{
   content:"";
   position:absolute;
   left:0; right:0;
-  top:44%;          /* seam height — tweak 42–48% to taste */
+  top:44%;          /* seam height */
   bottom:0;
   background:var(--green);
   z-index:0;
   pointer-events:none;
 }
 
-/* Make sure content sits above the green floor */
+/* content above */
 .deskPhoto,
 .deskInfo{
   position:relative;
   z-index:1;
   background:transparent;
 }
-/* DESKTOP: visible gray frame around the image (no HTML change needed) */
-.deskPhoto img{
-  /* keep your existing shadow, but add a gray "frame ring" */
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.22),
-    0 0 0 18px #d6d6d6;  /* <-- the frame color */
-}
 
-/* LEFT side: framed photo */
+/* LEFT column */
 .deskPhoto{
   display:flex;
-  align-items:center;
-  justify-content:center;
+  align-items:flex-start;          /* keeps photo from sinking */
+  justify-content:flex-start;
 
-  /* This creates the visible frame */
-  background:#d6d6d6;  /* SAME gray as top */
+  /* IMPORTANT: transparent so green can show on left/bottom */
+  background:transparent;
 
-  padding:40px;        /* frame thickness */
-
-  position:relative;
-  z-index:1;
+  /* Create visible green margins left + bottom like reference */
+  padding:44px 18px 86px 44px;
 }
 
-/* Photo itself: slightly smaller inside frame */
+/* PHOTO + FRAME (frame matches top gray) */
 .deskPhoto img{
-  width:100%;
-  max-width:420px;
-  height:auto;
-
-  border-radius:18px;
   display:block;
 
+  /* smaller overall image */
+  width:min(360px, 100%);
+  height:auto;
+
+  /* frame */
+  padding:18px;                   /* thickness of frame */
+  background:var(--topGray);      /* SAME as top */
+  border-radius:22px;
+
+  /* keep the image itself rounded inside the frame */
+  box-shadow:0 18px 40px rgba(0,0,0,.22);
   object-fit:cover;
   object-position:center;
-
-  /* soft shadow like mockup */
-  box-shadow:0 18px 40px rgba(0,0,0,.22);
-
-  /* prevent any old “test” filters */
-  filter:none !important;
-  background:transparent;
 }
 
-/* RIGHT side */
+/* fallback building image fills nicely */
+.deskPhoto.isFallback img{
+  object-fit:cover;
+  object-position:center;
+}
+
+/* RIGHT column */
 .deskInfo{
   padding:56px 46px 56px;
   display:flex;
   flex-direction:column;
-  gap:22px;
+  gap:20px;
 }
 
-/* Nudge name/title a little lower */
+/* Make name/role LEFT-ALIGN with kv below */
 .deskName{
-  margin-top:18px; /* adjust 10–30px */
+  margin-top:16px;
+  padding-left:28px;   /* matches deskGreenPanel left padding */
 }
 
 .deskName .nameRow{
@@ -236,19 +224,15 @@ a{color:inherit}
   text-transform:uppercase;
 }
 
-/* IMPORTANT: remove the "boxed panel" look.
-   The green is the FULL floor, not a smaller rounded box. */
+/* green content sits in the green floor (no inner box) */
 .deskGreenPanel{
   background:transparent;
-  border-radius:0;
   box-shadow:none;
+  border-radius:0;
 
-  /* push the details into the green area */
-  margin-top:auto;
-  padding:26px 28px 20px;
-
-  /* keeps content comfortably in the green region */
-  min-height:260px;
+  margin-top:auto;          /* pushes into the green */
+  padding:28px 28px 22px;   /* LEFT padding matches deskName */
+  min-height:270px;
 }
 
 .kv{
@@ -260,7 +244,6 @@ a{color:inherit}
   font-size:22px;
 }
 
-/* readable on green */
 .k{
   font-weight:800;
   letter-spacing:1px;
@@ -276,7 +259,7 @@ a{color:inherit}
   display:flex;
   gap:22px;
   justify-content:space-between;
-  margin-top:26px; /* moves buttons down a bit */
+  margin-top:30px;  /* buttons down a bit */
 }
 
 .pill{
@@ -294,12 +277,6 @@ a{color:inherit}
 .pill:hover{filter:brightness(1.02)}
 
 .optional{display:none}
-
-/* If we're showing the default building image, fill frame cleanly */
-.deskPhoto.isFallback img{
-  object-fit:cover;
-  object-position:center;
-}
 
 /* =========================
    MOBILE
@@ -350,13 +327,11 @@ a{color:inherit}
   color:var(--green2);
 }
 
-/* FIXED: real class selector (no backslash) */
 .mobIconBar{
   display:flex;
   flex-direction:row;
   justify-content:space-evenly;
   align-items:center;
-
   background:var(--green);
   padding:18px 14px;
   border-radius:0 0 18px 18px;
@@ -364,7 +339,6 @@ a{color:inherit}
   box-shadow:var(--shadow2);
 }
 
-/* circles */
 .iconCircle{
   width:86px;height:86px;
   border-radius:999px;
@@ -409,7 +383,6 @@ a{color:inherit}
   margin-top:6px;
 }
 
-/* Round action buttons (Share / Find) */
 .mobBottomActions .round{
   flex:0 0 64px;
   width:64px;height:64px;
@@ -424,7 +397,6 @@ a{color:inherit}
 .mobBottomActions .round svg{width:34px;height:34px; fill:#fff}
 .mobBottomActions .round:hover{filter:brightness(1.03)}
 
-/* Add to Contacts pill */
 .pillAdd{
   flex:1;
   height:64px;
@@ -446,17 +418,9 @@ a{color:inherit}
 .pillAdd:hover{filter:brightness(1.03)}
 
 /* Modal */
-.modal{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:60;
-}
+.modal{position:fixed; inset:0; display:none; z-index:60;}
 .modal[aria-hidden="false"]{display:block}
-.modalBackdrop{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,.55);
-}
+.modalBackdrop{position:absolute;inset:0; background:rgba(0,0,0,.55);}
 .modalPanel{
   position:relative;
   width:min(520px, calc(100vw - 28px));
@@ -482,7 +446,7 @@ a{color:inherit}
 .modalBody{padding:16px}
 .modalBody .note{color:#666; font-size:14px; margin-top:8px}
 
-/* Responsive: switch to mobile layout on phones/tablets */
+/* Responsive */
 @media (max-width: 900px){
   body{background:#efefef}
   .app{max-width:560px; padding:12px 14px 26px}
@@ -491,99 +455,4 @@ a{color:inherit}
   .topControls{display:none}
   .deskCard{display:none}
   .mobCard{display:block}
-}
-/* ===== FINAL DESKTOP POLISH (paste at VERY bottom) ===== */
-@media (min-width: 900px){
-
-  /* keep your full-width green floor */
-  .deskFrame{
-    position:relative !important;
-    background:#d6d6d6 !important;
-    overflow:hidden !important;
-    border-radius:24px !important;
-  }
-  .deskFrame::after{
-    content:"" !important;
-    position:absolute !important;
-    left:0 !important; right:0 !important;
-    top:44% !important;       /* seam height */
-    bottom:0 !important;
-    background: var(--green) !important;
-    z-index:0 !important;
-    pointer-events:none !important;
-  }
-  .deskPhoto,
-  .deskInfo{
-    position:relative !important;
-    z-index:1 !important;
-    background:transparent !important;
-  }
-
-  /* ---------- PHOTO: smaller + framed + shows green left/bottom ---------- */
-
-  /* stop centering vertically (this is what was pushing the photo into the green) */
-  .deskPhoto{
-    align-items:flex-start !important;
-    justify-content:flex-start !important;
-
-    /* frame color matches top gray */
-    background:#d6d6d6 !important;
-
-    /* create visible gray frame + inset from the left edge */
-    padding:28px 24px 70px 34px !important;
-
-    /* important: allow some of the green floor to show on the LEFT (bottom area) */
-    /* (inset the frame slightly from the column edge) */
-  }
-
-  /* the image itself smaller so bottom green shows */
-  .deskPhoto img{
-    width:100% !important;
-    max-width:360px !important;     /* smaller image */
-    max-height:420px !important;    /* prevents it from dropping into the green */
-    height:auto !important;
-
-    border-radius:18px !important;
-    object-fit:cover !important;
-    object-position:center !important;
-
-    box-shadow:0 18px 40px rgba(0,0,0,.22) !important;
-    filter:none !important;
-  }
-
-  /* ---------- ALIGNMENT: name/title + details share the same left edge ---------- */
-
-  /* give the right column a consistent left padding */
-  .deskInfo{
-    padding:56px 56px 56px 56px !important;
-    gap:18px !important;
-  }
-
-  /* nudge name/title slightly lower */
-  .deskName{
-    margin-top:18px !important;
-  }
-
-  /* remove extra left padding INSIDE the green panel so it lines up with the name */
-  .deskGreenPanel{
-    background:transparent !important;
-    box-shadow:none !important;
-    border-radius:0 !important;
-
-    margin-top:auto !important;
-    padding:26px 0 20px !important;   /* <-- no left/right padding = aligns with name */
-    min-height:260px !important;
-  }
-
-  /* keep the kv grid readable and aligned */
-  .kv{
-    grid-template-columns: 140px 1fr !important;
-    column-gap:16px !important;
-  }
-
-  /* move the buttons down a touch */
-  .deskPills{
-    margin-top:28px !important;
-    gap:22px !important;
-  }
 }

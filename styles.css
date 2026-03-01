@@ -165,6 +165,13 @@ a{color:inherit}
   z-index:1;
   background:transparent;
 }
+/* DESKTOP: visible gray frame around the image (no HTML change needed) */
+.deskPhoto img{
+  /* keep your existing shadow, but add a gray "frame ring" */
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.22),
+    0 0 0 18px #d6d6d6;  /* <-- the frame color */
+}
 
 /* LEFT side: framed photo */
 .deskPhoto{

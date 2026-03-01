@@ -456,3 +456,34 @@ a{color:inherit}
   .deskCard{display:none}
   .mobCard{display:block}
 }
+/* ===== DESKTOP: photo nudge right + make fallback/building fill like headshots ===== */
+@media (min-width: 900px){
+
+  /* 1) Nudge the whole photo block a bit to the RIGHT */
+  .deskPhoto{
+    padding-left: 56px !important;   /* was 40px — adjust 48–72px */
+    padding-right: 32px !important;
+  }
+
+  /* optional fine-tune: tiny extra nudge without changing the frame */
+  .deskPhoto img{
+    transform: translateX(10px) !important; /* adjust 0–18px */
+  }
+
+  /* 2) Make ALL photos a consistent “card” size so landscape building isn't tiny */
+  .deskPhoto img{
+    width: 100% !important;
+    max-width: 420px !important;
+
+    /* key: force a consistent height so landscape images don't collapse */
+    height: clamp(360px, 38vw, 520px) !important;
+
+    object-fit: cover !important;          /* zoom/crop as needed */
+    object-position: center 20% !important; /* good for faces (keeps eyes higher) */
+  }
+
+  /* For the fallback/building image: center it nicely */
+  .deskPhoto.isFallback img{
+    object-position: center !important;
+  }
+}

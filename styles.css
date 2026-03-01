@@ -1,4 +1,5 @@
-/* Highlight Digital Contact – v4 (Desktop + Mobile) */
+/* Highlight Digital Contact – CLEAN v4 (Desktop + Mobile) */
+
 :root{
   --green:#3F845B;
   --green2:#2f6b49;
@@ -24,6 +25,7 @@ body{
 
 a{color:inherit}
 
+/* a11y */
 .srOnly{
   position:absolute!important;
   width:1px;height:1px;
@@ -32,17 +34,17 @@ a{color:inherit}
   white-space:nowrap;border:0;
 }
 
-/* Headers */
-.deskHeader{
-  width:100%;
-  background:#111;
-}
+/* =========================
+   HEADERS
+   ========================= */
+.deskHeader{width:100%; background:#111;}
 .deskHeader img{
   width:100%;
   display:block;
   max-height:140px;
   object-fit:cover;
 }
+
 .mobHeader{
   display:none;
   width:100%;
@@ -55,14 +57,18 @@ a{color:inherit}
   margin:0 auto;
 }
 
-/* App container */
+/* =========================
+   APP WRAP
+   ========================= */
 .app{
   max-width:1100px;
   margin:0 auto;
   padding:26px 18px 40px;
 }
 
-/* Top controls */
+/* =========================
+   TOP CONTROLS (DESKTOP)
+   ========================= */
 .topControls{
   display:flex;
   gap:16px;
@@ -70,6 +76,7 @@ a{color:inherit}
   justify-content:flex-start;
   margin:10px 0 22px;
 }
+
 .searchWrap{
   flex:1;
   position:relative;
@@ -77,6 +84,7 @@ a{color:inherit}
   gap:10px;
   align-items:center;
 }
+
 .searchWrap input{
   flex:1;
   height:46px;
@@ -87,7 +95,9 @@ a{color:inherit}
   color:#fff;
   outline:none;
 }
+
 .searchWrap input::placeholder{color:rgba(255,255,255,.55)}
+
 .searchDropdown{
   position:absolute;
   top:54px;
@@ -126,46 +136,69 @@ a{color:inherit}
 .btn.primary{background:var(--green); border-color:transparent}
 .btn.secondary{background:#2a2a2a}
 
-
-/* Desktop card */
+/* =========================
+   DESKTOP CARD
+   ========================= */
 .deskCard{display:block}
+
 .deskFrame{
-  background:#e6e6e6;
-  border-radius:22px;
+  /* full-width green floor like mockup */
+  background: linear-gradient(
+    to bottom,
+    #d6d6d6 0%,
+    #d6d6d6 44%,
+    var(--green) 44%,
+    var(--green) 100%
+  );
+
+  border-radius:24px;
   box-shadow:var(--shadow);
   overflow:hidden;
+
   display:grid;
-  align-items:stretch;
   grid-template-columns: 44% 56%;
-  }
+  align-items:stretch;
+
+  /* keeps it mock-ish and prevents weird tall cards */
+  height: clamp(520px, 62vh, 680px);
+}
+
+/* LEFT: framed photo */
 .deskPhoto{
-  background:#cfcfcf;
+  background:transparent;          /* gradient is the background */
   display:flex;
-  align-items:stretch;     /* match the right column height */
+  align-items:flex-start;         /* prevents photo from sinking */
   justify-content:center;
-  padding:56px 28px 56px;  /* top starts at name; bottom ends at buttons */
-  box-sizing:border-box;
-  overflow:hidden;
-  min-height:0;
+
+  /* frame thickness */
+  padding:64px 52px 64px 64px;
 }
+
 .deskPhoto img{
-  width:100%;
-  max-width:420px;
-  height:100%;
-  max-height:100%;
+  width:88%;                      /* slightly smaller */
+  height:auto;
+  border-radius:18px;
+  object-fit:cover;
+  object-position:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  filter:none;                    /* no grayscale ever */
   display:block;
-  border-radius:10px;
-  box-shadow:0 18px 45px rgba(0,0,0,.22);
-  object-fit:contain;      /* headshots: show full image */
-  object-position:top center;
-  background:#cfcfcf;      /* letterbox fill */
 }
+
+/* RIGHT: name area + green content */
 .deskInfo{
-  padding:56px 46px 56px;
+  background:transparent;
+  padding:64px 56px;
   display:flex;
   flex-direction:column;
-  gap:28px;
+  gap:22px;
 }
+
+/* Name block lower (per your request) */
+.deskName{
+  margin-top:18px;
+}
+
 .deskName .nameRow{
   font-weight:300;
   letter-spacing:1px;
@@ -180,50 +213,72 @@ a{color:inherit}
   color:var(--green2);
   text-transform:uppercase;
 }
+
+/* This content belongs IN the green floor (no box) */
 .deskGreenPanel{
-  background:var(--green);
-  padding:26px 28px 30px; /* extra bottom padding so pills sit inside */
-  border-radius:18px;
-  box-shadow:0 14px 30px rgba(0,0,0,.15);
+  margin-top:auto;                /* pushes content into the green area */
+  padding:34px 36px 30px;
+  background:transparent;
+  border-radius:0;
+  box-shadow:none;
 }
+
+/* Contact grid */
 .kv{
   display:grid;
-  grid-template-columns: 140px 1fr;
-  row-gap:10px;
-  column-gap:10px;
+  grid-template-columns: 160px 1fr;
+  row-gap:12px;
+  column-gap:18px;
   align-items:center;
   font-size:22px;
 }
+
 .k{
-  font-weight:700;
+  font-weight:800;
   letter-spacing:1px;
+  color:#0b0b0b;
 }
-.v a{color:#000; text-decoration:none}
+.v, .v a{
+  color:#0b0b0b;
+  text-decoration:none;
+}
 .v a:hover{text-decoration:underline}
+
+/* Pills */
 .deskPills{
   display:flex;
-  gap:18px;
+  gap:22px;
   justify-content:space-between;
-  margin-top:18px;
+  margin-top:26px;
 }
+
 .pill{
-  height:52px;
+  height:56px;
   flex:1;
   border-radius:999px;
-  background:#dcdcdc;
+  background:#e8e8e8;
   border:none;
   font-size:20px;
   font-weight:800;
   color:var(--green2);
   cursor:pointer;
-  box-shadow:0 14px 30px rgba(0,0,0,.18);
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
 }
 .pill:hover{filter:brightness(1.02)}
 
 .optional{display:none}
 
-/* Mobile card */
+/* If you ever tag the photo wrapper with .isFallback, fill nicely */
+.deskPhoto.isFallback img{
+  width:92%;
+  object-fit:cover;
+}
+
+/* =========================
+   MOBILE CARD
+   ========================= */
 .mobCard{display:none}
+
 .mobTopCard{
   display:grid;
   grid-template-columns: 44% 56%;
@@ -232,6 +287,7 @@ a{color:inherit}
   overflow:hidden;
   box-shadow:var(--shadow2);
 }
+
 .mobImage{
   background:#cfcfcf;
   display:flex;
@@ -244,18 +300,21 @@ a{color:inherit}
   box-shadow:0 10px 25px rgba(0,0,0,.22);
   aspect-ratio: 4 / 3;
 }
+
 .mobTitle{
   padding:18px 16px;
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
+
 .mobName{
   font-size:36px;
   line-height:1.02;
   letter-spacing:.5px;
 }
 .mobName .last{font-weight:800}
+
 .mobDivider{
   height:4px;
   width:100%;
@@ -263,30 +322,39 @@ a{color:inherit}
   margin:10px 0 10px;
   opacity:.75;
 }
+
 .mobRole{
   font-size:26px;
   color:var(--green2);
 }
-\.mobIconBar{
+
+/* green icon bar (fixed + clean) */
+.mobIconBar{
   background:var(--green);
   border-radius:0 0 18px 18px;
   margin-top:0;
-  padding:16px 14px 18px;
+  padding:18px 14px;
   display:flex;
-  justify-content:space-around;
+  justify-content:space-evenly;
+  align-items:center;
   box-shadow:var(--shadow2);
 }
+
 .iconCircle{
-  width:76px;height:76px;
+  width:86px;height:86px;
   border-radius:999px;
-  border:3px solid rgba(255,255,255,.85);
+  border:4px solid rgba(255,255,255,.75);
   background:transparent;
   display:grid;
   place-items:center;
   cursor:pointer;
 }
-.iconCircle svg{width:40px;height:40px; fill:#fff}
+.iconCircle svg{
+  width:36px;height:36px;
+  fill:#fff;
+}
 .iconCircle:hover{filter:brightness(1.06)}
+
 .mobInfoCard{
   margin-top:14px;
   background:#fff;
@@ -294,14 +362,17 @@ a{color:inherit}
   box-shadow:var(--shadow2);
   padding:18px 18px 12px;
 }
+
 .infoBlock{padding:14px 0}
 .infoBlock + .infoBlock{border-top:1px solid rgba(0,0,0,.08)}
+
 .label{
   font-size:26px;
   color:var(--green2);
   font-weight:800;
   margin-bottom:8px;
 }
+
 .value{
   display:block;
   font-size:22px;
@@ -309,6 +380,8 @@ a{color:inherit}
   text-decoration:none;
 }
 .value:hover{text-decoration:underline}
+
+/* bottom actions: 2 round + pill */
 .mobBottomActions{
   display:flex;
   align-items:center;
@@ -318,7 +391,6 @@ a{color:inherit}
   margin-top:6px;
 }
 
-/* Round action buttons (Share / Find) */
 .mobBottomActions .round{
   flex:0 0 64px;
   width:64px;height:64px;
@@ -333,7 +405,6 @@ a{color:inherit}
 .mobBottomActions .round svg{width:34px;height:34px; fill:#fff}
 .mobBottomActions .round:hover{filter:brightness(1.03)}
 
-/* Add to Contacts pill */
 .pillAdd{
   flex:1;
   height:64px;
@@ -354,7 +425,9 @@ a{color:inherit}
 .pillAdd svg{width:30px;height:30px; fill:#fff}
 .pillAdd:hover{filter:brightness(1.03)}
 
-/* Modal */
+/* =========================
+   MODAL
+   ========================= */
 .modal{
   position:fixed;
   inset:0;
@@ -362,6 +435,7 @@ a{color:inherit}
   z-index:60;
 }
 .modal[aria-hidden="false"]{display:block}
+
 .modalBackdrop{
   position:absolute;inset:0;
   background:rgba(0,0,0,.55);
@@ -391,7 +465,9 @@ a{color:inherit}
 .modalBody{padding:16px}
 .modalBody .note{color:#666; font-size:14px; margin-top:8px}
 
-/* Responsive: switch to mobile layout on phones/tablets */
+/* =========================
+   RESPONSIVE: MOBILE MODE
+   ========================= */
 @media (max-width: 900px){
   body{background:#efefef}
   .app{max-width:560px; padding:12px 14px 26px}
@@ -400,153 +476,4 @@ a{color:inherit}
   .topControls{display:none}
   .deskCard{display:none}
   .mobCard{display:block}
-}
-
-/* If we're showing the default building image, fill the frame for a cleaner look */
-.deskPhoto.isFallback img{
-  object-fit:cover;
-  object-position:center;
-  background:transparent;
-}
-/* ===============================
-   MOBILE MIDDLE GREEN BAR (FIX)
-   =============================== */
-
-.mobIconBar{
-  display:flex !important;
-  flex-direction:row !important;
-  justify-content:space-evenly !important;
-  align-items:center !important;
-
-  background:var(--green) !important;
-  padding:18px 14px !important;
-  border-radius:0 0 18px 18px !important;
-
-  margin-top:0 !important;
-  box-shadow:0 16px 34px rgba(0,0,0,.16) !important;
-}
-
-/* make sure each circle stays the same size */
-.mobIconBar .iconCircle{
-  width:86px !important;
-  height:86px !important;
-  border-radius:999px !important;
-  display:grid !important;
-  place-items:center !important;
-
-  border:4px solid rgba(255,255,255,.75) !important;
-  background:transparent !important;
-}
-
-/* scale icons nicely */
-.mobIconBar .iconCircle svg{
-  width:34px !important;
-  height:34px !important;
-  fill:#fff !important;
-}
-/* ===============================
-   MOBILE MIDDLE GREEN BAR (CLEAN)
-   =============================== */
-.mobIconBar{
-  display:flex;
-  flex-direction:row;
-  justify-content:space-evenly;
-  align-items:center;
-
-  background:var(--green);
-  padding:18px 14px 18px;
-  border-radius:0 0 18px 18px;
-  margin-top:0;
-  box-shadow:var(--shadow2);
-}
-.mobIconBar .iconCircle{
-  width:86px;
-  height:86px;
-  border-radius:999px;
-  display:grid;
-  place-items:center;
-  border:4px solid rgba(255,255,255,.75);
-  background:transparent;
-}
-.mobIconBar .iconCircle svg{
-  width:36px;
-  height:36px;
-  fill:#fff;
-}
-
-/* =========================================
-   CLEAN DESKTOP SYSTEM (FINAL)
-   ========================================= */
-@media (min-width: 900px){
-
-  /* Entire card */
-  .deskFrame{
-    background:#d6d6d6;
-    border-radius:24px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
-
-    display:grid;
-    grid-template-columns: 44% 56%;
-    align-items:stretch;
-    height: clamp(520px, 62vh, 660px);
-  }
-
-  /* Left side photo frame */
-  .deskPhoto{
-    background:#d6d6d6;   /* same as top */
-    padding:64px 52px 64px 64px; /* frame thickness */
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .deskPhoto img{
-    width:88%;
-    height:auto;
-    border-radius:18px;
-    object-fit:cover;
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
-  }
-
-  /* Right side layout */
-  .deskInfo{
-    background:#d6d6d6;
-    padding:64px 56px;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    gap:24px;
-  }
-
-  /* Move name slightly lower */
-  .deskName{
-    margin-top:16px;
-  }
-
-  /* Green bottom section */
-  .deskGreenPanel{
-    margin-top:auto;           /* pushes it to bottom */
-    background:var(--green);
-    border-radius:18px;
-    padding:34px 36px 30px;
-    box-shadow:0 18px 35px rgba(0,0,0,.15);
-  }
-
-  /* Buttons */
-  .deskPills{
-    margin-top:24px;
-    display:flex;
-    gap:22px;
-  }
-
-  .deskPills .pill{
-    flex:1;
-    height:56px;
-    border-radius:999px;
-    background:#e8e8e8;
-    color:var(--green2);
-    font-weight:800;
-    box-shadow:0 14px 28px rgba(0,0,0,.18);
-  }
 }
